@@ -1,14 +1,12 @@
 title = "Форум"
 url = "/forum"
 layout = "default"
+hidden = "0"
 
 [forumChannels]
-memberPage = "account"
-memberPageIdParam = ":slug"
+memberPage = "forum/member"
 channelPage = "forum/channel"
-channelPageIdParam = ":slug"
-topicPage = "404"
-topicPageIdParam = ":slug"
+topicPage = "forum/topic"
 ==
 <section id="layout-title" class="october-top">
     <div class="container">
@@ -22,5 +20,3 @@ topicPageIdParam = ":slug"
         </div>
     </div>
 </div>
-
-

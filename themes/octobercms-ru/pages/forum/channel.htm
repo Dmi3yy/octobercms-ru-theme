@@ -1,18 +1,17 @@
 title = "Раздел форума"
-url = "/forum/:slug"
+url = "/forum/channel/:slug"
 layout = "default"
+hidden = "0"
 
 [forumChannel]
 idParam = ":slug"
-memberPage = "account"
-memberPageIdParam = ":slug"
-topicPage = "404"
-topicPageIdParam = ":slug"
+memberPage = "forum/member"
+topicPage = "forum/topic"
 ==
 <div class="styled-bg info-page">
     <div class="container">
          <div class="page-header">
-            <h2>{{ this.page.title }}</h2>
+            <h2>{{ channel.title }}</h2>
         </div>    
 
        

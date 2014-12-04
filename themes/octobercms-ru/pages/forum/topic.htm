@@ -1,0 +1,19 @@
+title = "Топик форума"
+url = "/forum/topic/:slug"
+layout = "default"
+
+[forumTopic]
+memberPage = "forum/member"
+channelPage = "forum/channel"
+==
+<div class="styled-bg info-page">
+    <div class="container">
+        <div class="page-header">
+            <h2>{{ topic.subject }}</h2>
+        </div>
+
+
+        {% component 'forumTopic' %}
+
+    </div>
+</div>
