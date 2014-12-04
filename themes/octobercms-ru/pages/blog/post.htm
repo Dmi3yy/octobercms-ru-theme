@@ -1,0 +1,43 @@
+title = "Запись блога"
+url = "/blog/post/:slug?"
+layout = "default"
+hidden = "0"
+
+[blogPost]
+idParam = ":slug"
+
+[blogCategories]
+idParam = ":slug"
+displayEmpty = "0"
+categoryPage = "blog/category"
+==
+<?php
+function onEnd()
+{
+    // Optional - set the page title to the post title
+    if (isset($this['post']))
+        $this->page->title = $this['post']->title;
+}
+?>
+==
+<section id="layout-title" class="october-top">
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+            {% component 'blogPost' %}
+            <div class="clearfix"></div>
+
+        </div>
+        <div class="col-sm-3">
+            <br>
+             {% partial 'blog-categories-tpl' items=blogCategories.categories%}
+
+        </div>
+    </div>
+</div>

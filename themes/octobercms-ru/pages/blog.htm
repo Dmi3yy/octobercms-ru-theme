@@ -1,0 +1,57 @@
+title = "Блог"
+url = "/blog/:page?"
+layout = "default"
+hidden = "0"
+
+[blogPosts]
+pageParam = ":page"
+postsPerPage = "10"
+noPostsMessage = "No posts found"
+postOrderAttr = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+
+[blogCategories]
+idParam = ":slug"
+displayEmpty = "0"
+categoryPage = "blog/category"
+==
+<?php
+/*
+function onStart() {
+    echo '<pre>';
+    print_r($this);
+}    
+*/
+?>
+==
+<section id="layout-title" class="october-top">
+    <div class="container">
+        <h1>Блог</h1>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            {% partial 'blog-tpl' items=blogPosts.posts%}
+        </div>
+        <div class="col-sm-3">
+            <br>
+            {#
+            <!-- Search -->
+            <form role="form">
+                <div class="well">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search posts...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+            #}
+            {% partial 'blog-categories-tpl' items=blogCategories.categories%}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+title = "Категория блога"
+url = "/blog/category/:slug?/:page?"
+layout = "default"
+hidden = "0"
+
+[blogPosts]
+pageParam = ":page"
+categoryFilter = ":slug"
+postsPerPage = "10"
+noPostsMessage = "No posts found"
+postOrderAttr = "published_at desc"
+categoryPage = "blog/category"
+postPage = "blog/post"
+
+[blogCategories]
+idParam = ":slug"
+displayEmpty = "0"
+categoryPage = "blog/category"
+==
+<?php
+function onEnd()
+{
+    // Optional - set the page title to the category name
+    if ($this['category'])
+        $this->page->title = $this['category']->name;
+}
+?>
+==
+<section id="layout-title" class="october-top">
+    <div class="container">
+            <h1>Блог <i class="icon icon-long-arrow-right"></i> {{ category.name }}</h1>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            {% partial 'blog-tpl' items=blogPosts.posts%}
+        </div>
+        <div class="col-sm-3">
+           <br>
+             {% partial 'blog-categories-tpl' items=blogCategories.categories%}
+        </div>
+    </div>
+</div>

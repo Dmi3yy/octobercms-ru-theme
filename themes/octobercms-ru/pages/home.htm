@@ -1,0 +1,134 @@
+title = "Главная"
+url = "/"
+layout = "default"
+hidden = "0"
+
+[blogPosts]
+pageParam = ":page"
+postsPerPage = "5"
+noPostsMessage = "No posts found"
+postOrderAttr = "published_at desc"
+categoryPage = "404"
+postPage = "blog/post"
+==
+<section class="logos october-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Осень ассоциируется с приближением смерти, так принято, или процессом, который необходим для создания чего-то нового, но красота этого времени описанная в октябре завораживает</p>
+            </div>  
+        </div>
+    </div>
+</section>
+<section class="home-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>Присоединяйтесь !!!</h3>
+                <p>Вы можете скачать установочные файлы или склонировать Репозиторий с GitHub. Установка через инсталлер проще и понятней. <br><br></p>
+                <div class="buttons">
+                    <a href="https://github.com/octobercms/install/archive/master.zip" class="btn btn-primary btn-lg col-sm-12"><i class="icon-download-alt"></i> Скачать Инсталлер</a><br><br><br>
+                    <a href="https://github.com/octobercms/october" class="btn btn-primary btn-lg col-sm-12"><i class="icon-github"></i> Клонировать Репозиторий</a>
+                </div>
+            </div>
+            <div class="col-sm-7 col-sm-offset-1 player-wrapper">
+                <div class="player">
+                    <iframe src="http://player.vimeo.com/video/79963873?color=3498db" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<br />
+
+<div class="container">
+    {#
+    <!-- Services -->
+    <div class="row our-services">
+        <div class="col-sm-12">
+            <h4 class="headline"><span>What we do</span></h4>
+            <p>He hasn't got a freckle my mad as a middy. Trent from punchy maccas no dramas shazza got us some ripper. As dry as a bradman flamin lets throw a cut lunch commando.</p>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="services">
+                        <div class="service-item">
+                            <i class="icon-gear"></i>
+                            <div class="service-desc">
+                                <h5>Built with Bootstrap 3</h5>
+                                <p>Bacon ipsum dolor sit amet rump tri-tip pig pork chop. Doner tri-tip shoulder, andouille sausage filet mignon beef ribs drumstick.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="services">
+                        <div class="service-item">
+                            <i class="icon-laptop"></i>
+                            <div class="service-desc">
+                                <h5>Responsive design</h5>
+                                <p>Salami turkey jowl rump jerky ball tip drumstick ground round tenderloin kielbasa hamburger prosciutto. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="services">
+                        <div class="service-item">
+                            <i class="icon-refresh"></i>
+                            <div class="service-desc">
+                                <h5>Easy to customize</h5>
+                                <p>T-bone tongue turducken hamburger, doner sirloin rump pork jowl cow. Beef rump ham hock brisket.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="services">
+                        <div class="service-item">
+                            <i class="icon-plus"></i>
+                            <div class="service-desc">
+                                <h5>Works out of the box</h5>
+                                <p>Pork belly chicken turkey andouille t-bone ribeye tenderloin prosciutto flank chuck porchetta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="services">
+                        <div class="service-item">
+                            <i class="icon-envelope"></i>
+                            <div class="service-desc">
+                                <h5>24/7 support</h5>
+                                <p>Kielbasa chicken doner filet mignon meatball salami ground round prosciutto spare ribs jerky meatloaf shankle bacon beef swine.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="services">
+                        <div class="service-item">
+                            <i class="icon-picture"></i>
+                            <div class="service-desc">
+                                <h5>Special Portfolio</h5>
+                                <p>Short loin pork belly beef, tenderloin swine ribeye tri-tip doner salami rump hamburger kielbasa venison beef ribs brisket.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    #}
+    
+    {% partial 'blog-home-tpl' items=blogPosts.posts%}
+    
+</div>
+
+<br />

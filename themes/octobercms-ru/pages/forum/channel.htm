@@ -1,0 +1,22 @@
+title = "Раздел форума"
+url = "/forum/:slug"
+layout = "default"
+
+[forumChannel]
+idParam = ":slug"
+memberPage = "account"
+memberPageIdParam = ":slug"
+topicPage = "404"
+topicPageIdParam = ":slug"
+==
+<div class="styled-bg info-page">
+    <div class="container">
+         <div class="page-header">
+            <h2>{{ this.page.title }}</h2>
+        </div>    
+
+       
+        {% component 'forumChannel' %}
+        
+    </div>
+</div>

@@ -1,0 +1,96 @@
+title = "Документация"
+url = "/docs/:slug?"
+layout = "default"
+hidden = "0"
+==
+<?php
+function onStart() {
+    $files = File::files('themes/octoberru/content/docs');
+    $files = array_flip($files);
+    $callback = function (&$item, $key) {$item = basename($key);};
+    array_walk($files, $callback);
+    $files = array_flip($files);
+    
+    $sections = [
+        "cms" => ["title" => "CMS", "icon" => "magic"],
+        "plugin" => ["title" => "Плагины", "icon" => "puzzle-piece"],
+        "backend" => ["title" => "Админка", "icon" => "desktop"],
+        "database" => ["title" => "База данных", "icon" => "hdd"],
+        "help" => ["title" => "Помощь", "icon" => "question-sign"]
+    ];
+    $documents = [
+        "README.md" => "",
+        
+        "cms-themes.md" => "Темы (themes)",
+        "cms-pages.md" => "Страницы (pages)",
+        "cms-partials.md" => "Чанки (partials)",
+        "cms-layouts.md" => "Макеты (layouts)",
+        "cms-content.md" => "Блоки контента (content)",
+        "cms-components.md" => "Компоненты",
+        "cms-markup.md" => "Разметка",
+        "cms-ajax.md" => "AJAX",
+        
+        "plugin-registration.md" => "Регистрация и версии",
+        "plugin-components.md" => "Создание компонентов",
+        "plugin-settings.md" => "Настройки и конфигурация",
+        "plugin-localization.md" => "Локализация",
+        "plugin-email.md" => "Отправка писем",
+        
+        "database-query.md" => "Запросы",
+        "database-model.md" => "Модели",
+        "database-collection.md" => "Коллекции",
+        "database-structure.md" => "Структура",
+        
+        "help-installation.md" => "Установка",
+        "help-projects.md" => "Проекты",
+        "help-marketplace.md" => "Магазин дополнений",
+        "help-console.md" => "Консольный интерфейс",
+        "help-developer-guide.md" => "Руководство разработчика",
+
+        "backend-controllers-views-ajax.md" => "Контроллеры, представления и AJAX",
+        "backend-forms.md" => "Формы",
+        "backend-lists.md" => "Списки",
+        "backend-relations.md" => "Связи",
+        "backend-users.md" => "Пользователи и права",
+        "backend-controls.md" => "Управление",
+        "backend-widgets.md" => "Виджеты"
+    ];
+    foreach ($documents as $key => $value) {
+        $section = explode('-', $key)[0];
+        if (isset($files[$key])) {
+            $docs[$section][$key] = [
+                "url" => $key,
+                "title" => $value
+            ];
+        }
+    }
+    
+    $this['documents'] = $documents;
+    $this['sections'] = $sections;
+    $this['docs'] = $docs;
+}
+?>
+==
+<section id="layout-title" class="october-top">
+    <div class="container">
+        <h1>Документация <i class="icon icon-long-arrow-right"></i> {{ attribute(documents, this.param.slug) }} </h1>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 docsmenu">
+            <ul class="list-unstyled">
+                {% for key, section in sections %}
+                <li class="header"><i class="icon icon-{{ section.icon }}"></i>{{ section.title }}</li>
+                {% for doc in docs[key] %}
+                <li class="item  {% if doc.url == this.param.slug %}active{% endif%}"><a href="/docs/{{ doc.url }}">{{ doc.title }}</a></li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-9 docs">
+            {% content ['docs', this.param.slug|default('cms-themes.md')]|join('/') %}
+        </div>
+    </div>
+</div>

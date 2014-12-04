@@ -1,0 +1,26 @@
+title = "Форум"
+url = "/forum"
+layout = "default"
+
+[forumChannels]
+memberPage = "account"
+memberPageIdParam = ":slug"
+channelPage = "forum/channel"
+channelPageIdParam = ":slug"
+topicPage = "404"
+topicPageIdParam = ":slug"
+==
+<section id="layout-title" class="october-top">
+    <div class="container">
+        <h1>{{ this.page.title }}</h1>
+    </div>
+</section>
+<div class="container content-inner">
+    <div class="row">
+        <div class="col-sm-12">
+            {% component 'forumChannels' %}
+        </div>
+    </div>
+</div>
+
+
