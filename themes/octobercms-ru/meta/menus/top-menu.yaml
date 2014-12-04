@@ -36,8 +36,3 @@ items:
         reference: docs
         cmsPage: ''
         replace: ''
-    -
-        title: Профиль
-        type: cms-page
-        code: ''
-        reference: account
