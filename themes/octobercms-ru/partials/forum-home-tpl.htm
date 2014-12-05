@@ -3,7 +3,7 @@
     <h4 class="headline"><span>Форум :: последние топики </span></h4>
     {% for topic in topics %}
          <div class="tweet">
-                <a href="{{ topic.url }}">{{ topic.subject }}</a>  <small>{{ topic.last_post_at.diffForHumans }}</small>
+                <a href="{{ topic.url }}">{{ topic.subject }}</a> ::  <small>{{ topic.last_post_at.diffForHumans }}</small>
         </div>
     {% endfor %}
 </div>
