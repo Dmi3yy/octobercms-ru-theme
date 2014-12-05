@@ -13157,6 +13157,14 @@ header#layout-header .navbar-brand {
 }
 
 .october-top {background: url(../images/october-top.jpg);min-height:100px;color:white;text-shadow:1px 1px #000}
+.october-top H1, .october-top p
+{
+    display: inline-block;
+    background-color: rgba(52, 73, 94, 0.7);
+    padding: 0px 5px;
+    border-radius: 5px;
+}
+
 
 /*docs page*/
 .docsmenu li.header {  text-transform: uppercase;  font-weight: blod;  font-size: 18px;  margin-left: 0px;  margin-top: 20px;  color: #666;  }

@@ -8,6 +8,14 @@ idParam = ":slug"
 memberPage = "forum/member"
 channelPage = "forum/channel"
 ==
+<?php
+function onEnd()
+{
+    if (isset($this['topic']))
+        $this->page->title = $this['topic']->subject;
+}
+?>
+==
 <div class="styled-bg info-page">
     <div class="container">
         <div class="page-header">

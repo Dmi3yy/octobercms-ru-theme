@@ -5,7 +5,7 @@ hidden = "0"
 ==
 <?php
 function onStart() {
-    $files = File::files('themes/octoberru/content/docs');
+    $files = File::files('themes/octobercms-ru/content/docs');
     $files = array_flip($files);
     $callback = function (&$item, $key) {$item = basename($key);};
     array_walk($files, $callback);
