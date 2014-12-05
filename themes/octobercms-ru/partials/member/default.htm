@@ -1,0 +1,20 @@
+{% flash %}
+    <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    </div>
+{% endflash %}
+
+{% if __SELF__.member %}
+
+    {% if mode == 'edit' %}
+        {% partial __SELF__ ~ '::update' %}
+    {% else %}
+        {% partial __SELF__ ~ '::preview' %}
+    {% endif %}
+
+{% else %}
+
+    <p>Forum member not found</p>
+
+{% endif %}

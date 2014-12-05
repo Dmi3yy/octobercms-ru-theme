@@ -10,6 +10,11 @@ noPostsMessage = "No posts found"
 postOrderAttr = "published_at desc"
 categoryPage = "404"
 postPage = "blog/post"
+
+[forumTopics lastTopics]
+memberPage = "forum/member"
+topicPage = "forum/topic"
+topicPerPage = "10"
 ==
 <section class="logos october-top">
     <div class="container">
@@ -126,8 +131,18 @@ postPage = "blog/post"
         </div>
     </div>
     #}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                {% partial 'blog-home-tpl' items=blogPosts.posts%}
+            </div>
+            <div class="col-sm-5">
+                {% partial 'forum-home-tpl' items=lastTopics.topics%}
+            </div>
+        </div>
+    </div>
 
-    {% partial 'blog-home-tpl' items=blogPosts.posts%}
+
 
 </div>
 

@@ -1,0 +1,56 @@
+<div class="rainlab-forum">
+
+    {% flash %}
+        <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        </div>
+    {% endflash %}
+
+    {% if returnUrl %}
+        <p>&larr; <a href="{{ returnUrl }}">Вернуться к  {{ channel.title }}</a></p>
+    {% endif %}
+
+    {% if topic %}
+
+        <h4>{{ topic.subject }}</h4>
+
+        <div class="row">
+            <div class="col-md-3 col-md-push-9">
+
+                <div id="topicControlPanel">
+                    {% partial "@controlpanel" %}
+                </div>
+
+            </div>
+            <div class="col-md-9 col-md-pull-3">
+
+                {% partial "@posts" %}
+
+                {% partial "@pagination" %}
+
+                <h4>Добавить комментарий</h4>
+                {% if topic.is_locked and member.is_moderator == false %}
+                    <p>Топик закрыт: вы не можете добавлять комментарии.</p>
+                {% else %}
+                    {% if member %}
+                        {% partial "@postform" %}
+                    {% else %}
+                        <p>Необходимо авторизироваться для того что б добавить комментарий.</p>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+        </div>
+
+    {% elseif channel %}
+
+        <h4>Добавить новый топик</h4>
+        {% partial "@createform" %}
+
+    {% else %}
+
+        <p>По вашему запросу ничего не найдено</p>
+
+    {% endif %}
+</div>
