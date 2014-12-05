@@ -16,14 +16,17 @@ function onEnd()
 }
 ?>
 ==
-<div class="styled-bg info-page">
+<section id="layout-title" class="october-top">
     <div class="container">
-        <div class="page-header">
-            <h2>{{ topic.subject }}</h2>
+       <h1>{{ topic.subject }}</h1>
+    </div>
+</section>
+<div class="container content-inner">
+    <div class="row">
+        <div class="col-sm-12">
+
+            {% component 'forumTopic' %}
+
         </div>
-
-
-        {% component 'forumTopic' %}
-
     </div>
 </div>

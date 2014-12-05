@@ -1,11 +1,24 @@
 title = "Пользователь форума"
 url = "/forum/member/:slug"
 layout = "default"
+hidden = "0"
 
 [forumMember]
+idParam = ":slug"
 channelPage = "forum/channel"
 topicPage = "forum/topic"
 ==
+<section id="layout-title" class="october-top">
+    <div class="container">
+       <h1>{{ member.username }}</h1>
+    </div>
+</section>
+<div class="container content-inner">
+    <div class="row">
+        <div class="col-sm-12">
 
-<h1>{{ member.username }}</h1>
-{% component 'forumMember' %}
+           {% component 'forumMember' %}
+
+        </div>
+    </div>
+</div>
