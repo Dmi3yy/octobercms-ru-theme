@@ -1,0 +1,101 @@
+<a href="{{ post.member.url }}" class="avatar">
+    <img src="{{ post.member.user.avatarThumb(50, '//placehold.it/50x50.png') }}" alt="{{ post.member.username }}" />
+</a>
+<div class="content">
+    <a href="{{ post.member.url }}" class="author">
+        {{ post.member.username }}
+    </a>
+    <div class="metadata">
+        <div class="date">
+            <a href="#post-{{ post.id }}">{{ post.created_at.diffForHumans }}</a>
+        </div>
+        {% if post.member.is_moderator %}
+            <div class="status">
+                <i class="icon-star"></i> Админ
+            </div>
+        {% endif %}
+    </div>
+
+    {% if mode == 'edit' %}
+
+        {{ form_open() }}
+            <!-- Passable fields -->
+            <input type="hidden" name="mode" value="save" />
+            <input type="hidden" name="post" value="{{ post.id }}" />
+
+            {% if topic.first_post.id == post.id %}
+                <input type="text" name="subject" class="form-control" value="{{ topic.subject }}" />
+            {% endif %}
+
+            <div class="text">
+                {% if topic.is_locked and not member.is_moderator %}
+                    <p>Этот топик закрыт: вы не можете его редактировать или добавлять комментарии.</p>
+                {% else %}
+                <textarea
+                    rows="5"
+                    name="content"
+                    class="form-control"
+                    >{{ post.content }}</textarea>
+                {% endif %}
+            </div>
+            <div class="actions">
+                {% if not topic.is_locked or member.is_moderator %}
+                    <a
+                        href="javascript:;"
+                        data-request="{{ __SELF__ }}::onUpdate"
+                        data-request-data="post: {{ post.id }}"
+                        data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
+                        class="delete">
+                        Сохранить
+                    </a>
+
+                    <a
+                        href="javascript:;"
+                        data-request="{{ __SELF__ }}::onUpdate"
+                        data-request-data="post: {{ post.id }}, mode: 'delete'"
+                        data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
+                        data-request-confirm="Вы уверенны?"
+                        class="delete">
+                        Удалить
+                    </a>
+                {% endif %}
+                <a href="javascript:;"
+                    class="cancel"
+                    data-request="{{ __SELF__ }}::onUpdate"
+                    data-request-data="post: {{ post.id }}, mode: 'view'"
+                    data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'">
+                    Отмена
+                </a>
+            </div>
+        {{ form_close() }}
+
+    {% elseif mode == 'delete' %}
+        <div class="text">
+            <p><em>Топик удален</em></p>
+        </div>
+    {% else %}
+        <div class="text">
+            {{ post.content_html|raw }}
+
+            {% if post.created_at != post.updated_at %}
+                <p><small class="text text-muted">Last updated {{ post.updated_at.diffForHumans }}</small></p>
+            {% endif %}
+        </div>
+        <div class="actions">
+            <!--<a class="quote">
+                Quote
+            </a>-->
+            {% if post.canEdit and mode != 'edit' and mode != 'delete' %}
+                <a href="javascript:;"
+                    class="edit"
+                    data-request="onUpdate"
+                    data-request-data="post: {{ post.id }}"
+                    data-request-update="'{{ __SELF__ ~ '::post' }}': '#post-{{ post.id }}'">
+                    Редактировать
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</div>
+<div class="post-divider"></div>
