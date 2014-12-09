@@ -93,5 +93,14 @@ security = "all"
         ]|theme }}"></script>
         {% framework extras %}
         {% scripts %}
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=c&skin=desert"></script>
+        <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('pre code').each(function(){
+                jQuery(this).parent().addClass('prettyprint');
+            });
+            prettyPrint();
+        });
+        </script>
     </body>
 </html>
