@@ -1,0 +1,25 @@
+<div class="reply-form" id="postForm">
+
+    {{ form_open({ request: 'onPost' }) }}
+
+        <input type="hidden" name="topic" value="{{ topic.id }}" />
+
+        <div class="member-area">
+            <img src="{{ member.user.avatarThumb(50, '//placehold.it/50x50.png') }}" class="member-avatar" alt="{{ member.username }}" />
+        </div>
+
+        <div class="post-area">
+            <textarea
+                id="topicContent"
+                name="content"
+                rows="6"
+                class="form-control">{{ form_value('content') }}</textarea>
+            <span class="help-block">Можно использовать  <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a> разметку.</span>
+            <div class="post-buttons">
+                <button type="submit" class="btn btn-primary btn-lg">Добавить комментарий</button>
+            </div>
+        </div>
+
+    {{ form_close() }}
+
+</div>
