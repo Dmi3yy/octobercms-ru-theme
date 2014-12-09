@@ -86,6 +86,7 @@ function onStart() {
                 {% for doc in docs[key] %}
                 <li class="item  {% if doc.url == this.param.slug %}active{% endif%}"><a href="/docs/{{ doc.url }}">{{ doc.title }}</a></li>
                 {% endfor %}
+                <li>&nbsp;</li>
                 {% endfor %}
             </ul>
         </div>
