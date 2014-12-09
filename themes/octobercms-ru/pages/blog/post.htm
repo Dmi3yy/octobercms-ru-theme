@@ -1,15 +1,21 @@
 title = "Запись блога"
-url = "/blog/post/:slug?"
+url = "/blog/post/:slug"
 layout = "default"
 hidden = "0"
 
 [blogPost]
 idParam = ":slug"
+categoryPage = "blog/category"
 
 [blogCategories]
 idParam = ":slug"
 displayEmpty = "0"
 categoryPage = "blog/category"
+
+[forumEmbedTopic embedForumTopic]
+channelId = "blog"
+idParam = ":slug"
+memberPage = "forum/member"
 ==
 <?php
 function onEnd()
@@ -31,13 +37,15 @@ function onEnd()
         <div class="col-sm-9">
 
             {% component 'blogPost' %}
+              {% component 'embedForumTopic' %}
+
             <div class="clearfix"></div>
 
         </div>
         <div class="col-sm-3">
             <br>
              {% partial 'blog-categories-tpl' items=blogCategories.categories%}
-
+           
         </div>
     </div>
 </div>

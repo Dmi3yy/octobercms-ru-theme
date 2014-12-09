@@ -16,12 +16,6 @@ memberPage = "forum/member"
 topicPage = "forum/topic"
 topicPerPage = "10"
 ==
-<?php
-function onStart(){
-    setlocale(LC_TIME, 'ru_RU'); 
-}
-?>
-==
 <section class="logos october-top">
     <div class="container">
         <div class="row">
@@ -139,12 +133,14 @@ function onStart(){
     #}
     <div class="container">
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-12">
                 {% partial 'blog-home-tpl' items=blogPosts.posts%}
             </div>
+            {#
             <div class="col-sm-5">
                 {% partial 'forum-home-tpl' items=lastTopics.topics%}
             </div>
+            #}
         </div>
     </div>
 
