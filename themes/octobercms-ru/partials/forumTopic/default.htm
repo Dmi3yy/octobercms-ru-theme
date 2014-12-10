@@ -8,7 +8,7 @@
     {% endflash %}
 
     {% if returnUrl %}
-        <p class="return"><i class="icon icon-long-arrow-left"></i> <a href="{{ returnUrl }}">Вернуться к  {{ channel.title }}</a></p>
+        <p class="return"><a href="{{ returnUrl }}"><i class="icon icon-long-arrow-left"></i> Вернуться к теме "{{ channel.title }}"</a></p>
     {% endif %}
 
     {% if topic %}

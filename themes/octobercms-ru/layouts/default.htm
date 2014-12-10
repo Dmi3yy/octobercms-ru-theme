@@ -14,9 +14,9 @@ security = "all"
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="{{ 'assets/images/logo.png'|theme }}" />
         {% styles %}
-        <link href="{{ 
-            'assets/css/theme.css'
-        |theme }}" rel="stylesheet">
+        <link href="{{ [
+            'assets/less/theme.less'
+        ]|theme }}" rel="stylesheet">
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -34,17 +34,21 @@ security = "all"
             <!-- Nav -->
             <nav id="layout-nav" class="navbar navbar-inverse" role="navigation">
                 <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="{{ 'home'|page }}" alt="OctoberCMS ru"></a>
-                    </div>
-                    <div class="collapse navbar-collapse navbar-main-collapse">
-                        {% component 'topMenu'%}
+                    <div class="col-sm-12">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="{{ 'home'|page }}" alt="OctoberCMS ru"></a>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-main-collapse">
+                            {% component 'topMenu'%}
+                        </div>
+                        
                     </div>
                 </div>
             </nav>
@@ -92,20 +96,7 @@ security = "all"
             'assets/javascript/app.js',
         ]|theme }}"></script>
         {% framework extras %}
-        {% scripts %}
         <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=c&skin=desert"></script>
-        <script type="text/javascript">
-        jQuery(function($){
-            $('#layout-content').css({ 
-                minHeight: $(window).height() - ( $('#layout-header').outerHeight() + $('#layout-footer').outerHeight() )
-            })
-            
-            $('pre code').each(function(){
-                $(this).parent().addClass('prettyprint');
-            });
-            prettyPrint();
-        });
-        
-        </script>
+        {% scripts %}
     </body>
 </html>

@@ -28,7 +28,11 @@ function onEnd()
 ==
 <section id="layout-title" class="october-top">
     <div class="container">
-            <h1>Блог <i class="icon icon-long-arrow-right"></i> {{ category.name }}</h1>
+            <div class="col-sm-12">
+                
+                <h1>Блог <i class="icon icon-long-arrow-right"></i> {{ category.name }}</h1>
+                
+            </div>
     </div>
 </section>
 
@@ -38,7 +42,6 @@ function onEnd()
             {% partial 'blog-tpl' items=blogPosts.posts%}
         </div>
         <div class="col-sm-3">
-           <br>
              {% partial 'blog-categories-tpl' items=blogCategories.categories%}
         </div>
     </div>
