@@ -27,7 +27,11 @@ function onStart() {
 ==
 <section id="layout-title" class="october-top">
     <div class="container">
-        <h1>Блог</h1>
+        <div class="col-sm-12">
+
+            <h1>Блог</h1>
+            
+        </div>
     </div>
 </section>
 
@@ -37,7 +41,6 @@ function onStart() {
             {% partial 'blog-tpl' items=blogPosts.posts%}
         </div>
         <div class="col-sm-3">
-            <br>
             {#
             <!-- Search -->
             <form role="form">

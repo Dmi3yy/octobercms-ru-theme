@@ -5,11 +5,10 @@
             <h2>
                 <a href="{{ post.url }}">{{ post.title }}</a>
             </h2>
-            <hr />
-            <p class="text-muted"> {% for category in post.categories %}
+            <p class="text-muted">{% for category in post.categories %}
                 <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
                 {% endfor %}
-                :: {{ post.published_at.diffForHumans }}
+                {{ post.published_at.diffForHumans }}
             </p>
              {% if post.featured_images.0.path %}
             <a href="{{ post.url }}">
@@ -22,7 +21,6 @@
             {% else %}
                 <p class="content">{{ post.content_html|raw }}</p>
             {% endif %}
-            <a class="btn btn-lg btn-default" href="{{ post.url }}">Подробнее</a>
         </div>
     </div>
 {% else %}

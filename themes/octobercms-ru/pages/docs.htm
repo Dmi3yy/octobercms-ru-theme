@@ -73,7 +73,11 @@ function onStart() {
 ==
 <section id="layout-title" class="october-top">
     <div class="container">
-        <h1>Документация{% if attribute(documents, this.param.slug) != '' %} <i class="icon icon-long-arrow-right"></i>{% endif %} {{ attribute(documents, this.param.slug) }} </h1>
+        <div class="col-sm-12">
+
+            <h1>Документация{% if attribute(documents, this.param.slug) != '' %} <span class="fui-arrow-right"></span></i>{% endif %} {{ attribute(documents, this.param.slug) }} </h1>
+            
+        </div>
     </div>
 </section>
 

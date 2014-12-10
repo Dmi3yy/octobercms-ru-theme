@@ -19,15 +19,19 @@ function onEnd()
 ==
 <section id="layout-title" class="october-top">
     <div class="container">
-       <h1>{{ channel.title }}</h1>
+       <div class="col-sm-12">
+
+           <h1>{{ channel.title }}</h1>
+           
+       </div>
     </div>
 </section>
 <div class="container content-inner">
     <div class="row">
         <div class="col-sm-12">
 
-             {% component 'forumChannel' %}
-
+            {% component 'forumChannel' %}
+            
         </div>
     </div>
 </div>
