@@ -1,24 +1,46 @@
 ==
+<?php
+function onStart() {
+
+    $embedInfo = DB::table('rainlab_forum_topics')
+                ->select(array('embed_code','count_views','count_posts'))
+->whereNotNull('embed_code')
+->get();
+
+foreach ($embedInfo as $val)
+{
+$key = $val->embed_code;
+$infoViews[$key] = $val->count_views;
+$infoPosts[$key] = $val->count_posts;
+}
+
+$this['infoViews'] = $infoViews;
+$this['infoPosts'] = $infoPosts;
+}
+?>
+==
 <div class="recent-tweets">
-        <h4 class="headline"><span>Блог :: последние записи </span></h4>
-        {% for post in posts %}
-         <div class="tweet">
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            <br />
-            <small class="info">
-                {% for category in post.categories %}
-                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-                    {% if loop.last %} :: {% endif %}
-                {% endfor %}
-                <span class="text-muted">{{ post.published_at.diffForHumans }}</span>
-            </small>
-            {% if post.excerpt %}
-                <p class="excerpt">{{ post.excerpt }}</p>
-            {% else %}
-                <div class="content">{{ post.content_html|raw }}</div>
-            {% endif %}
-        </div>
+    <h4 class="headline"><span>Блог :: последние записи </span></h4>
+    {% for post in posts %}
+    <div class="tweet">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <br />
+        <small class="info">
+            {% for category in post.categories %}
+            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+            {% if loop.last %} :: {% endif %}
+            {% endfor %}
+            <span class="text-muted">{{ post.published_at.diffForHumans }}</span> ::
+            <span class="text-muted">{{ infoViews[post.slug] }} <i class="fa fa-eye icon-eye-open"></i></span> ::
+            <span class="text-muted">{{ infoPosts[post.slug] }} <i class="fa fa-comments-o icon-comments-o"></i></span>
+        </small>
+        {% if post.excerpt %}
+        <p class="excerpt">{{ post.excerpt }}</p>
+        {% else %}
+        <div class="content">{{ post.content_html|raw }}</div>
+        {% endif %}
+    </div>
     {% else %}
-        <p class="no-data">Нет записей в блоге</p>
+    <p class="no-data">Нет записей в блоге</p>
     {% endfor %}
 </div>
