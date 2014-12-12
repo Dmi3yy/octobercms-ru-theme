@@ -24,68 +24,88 @@
 @color-blue: #2F99DA;
 
 
+html{
+    background: url(../images/october.jpg) 50% 100% no-repeat @brand-primary;
+}
+
 body {
 	font-family: 'Ubuntu', 'Lato', Helvetica, Arial, sans-serif;
-    background-color: @brand-primary;
+    background: url(../images/october-top.jpg) 50% 0% no-repeat;
     cursor: default;
     overflow-y: scroll;
 }
 
 #layout-header {
+    
     .navbar-brand {
         background-image: url('../images/logo-white.png');
         width: 200px;
         position: relative;
-        top: 3px;
+        top: 2px;
+        left: 5px;
         background-repeat: no-repeat;
         font-size: 28px;
         font-weight: normal;
         text-align: right;
-        margin-left: -15px;
     }
     
     #layout-nav{
 	    margin-bottom: 0;
+        background: fadeout(@brand-primary, 10%) padding-box;
+        border-radius: 0;
+        border-top: 5px solid fadeout(@brand-primary, 30%);
+        height: 57px;
 
 	    .navbar-nav{
+            padding-top: 5px;
+            
 	        li{
 	            padding: 5px 0;
+                margin-left: 5px;
 	            
 	            a{
 	                text-transform: uppercase;
 	                font-weight: 500;
 	                padding: 5px 10px;
-	                margin: 5px 5px 5px;
-	                border-radius: 5px !important;
+	                border-radius: 6px !important;
 	                
 	                &:hover{
-	                    background: lighten(@brand-primary, 50%);
-	                    color: @text-color;
+	                    background: fadeOut(#fff, 50%);
+	                    color: @brand-primary;
 	                }
 	            }
 	            
 	            &.active{
 	                a{
-	                    &:hover{
-	                        color: white;
-	                        background: @link-color;
-	                    }
+                        color: white;
+                        background: @link-color;
 	                }
 	            }
 	        }
 	        
 	        .dropdown{
+                
 	            .divider{
-	                background: @brand-primary;
+	                background: fadeout(darken(@brand-primary, 1%), 70%);
 	            }
 	            
 	            a{
 	                text-transform: inherit;
+                    
+                    span{
+                        border-top-color: fadeOut(#fff, 80%);
+                    }
+                    
+                    &:hover{
+                        span{
+                            border-top-color: fadeout(@brand-primary, 30%);
+                        }
+                    }
 	            }
 	            
 	            .dropdown-menu{
 	                color: white;
-	                background: @brand-primary;
+	                background: fadeout(@brand-primary, 10%);
 	            }
 	            
 	            &.open{
@@ -110,7 +130,36 @@ body {
 	}
 }
 
+// Body header
+
+#layout-title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 5px solid fadeout(@brand-primary, 50%);
+    border-left-color: fadeout(@brand-primary, 90%);
+    border-right-color: fadeout(@brand-primary, 90%);
+    
+    .container{
+        padding: 0;
+        
+        div{
+            text-align: left;
+        }
+        
+        h1,p{
+            margin: 0;
+            font-size: 40px;
+            
+            span{
+                font-size: 26px;
+                padding: 0 5px;
+            }
+        }
+    }
+}
+
 #layout-content {
+    padding-top: 50px;
     background-color: @body-bg;
     
     a {
@@ -118,6 +167,7 @@ body {
         
         &:hover{
             border-color: transparent;
+            text-decoration: underline;
         }
     }
     
@@ -130,31 +180,8 @@ body {
     
     hr{
 		border-color: #EEE -moz-use-text-color -moz-use-text-color;
+        margin: 0;
 	}
-	
-    
-    // Body header
-    
-    #layout-title {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        margin-bottom: 50px;
-        
-        .container{
-            padding: 0;
-            
-            h1,p{
-            	text-transform: uppercase;
-            	margin: 0;
-                font-size: 40px;
-                
-                span{
-                    font-size: 26px;
-                    padding: 0 5px;
-                }
-            }
-        }
-    }
     
     .jumbotron {
         padding-top: 56px;
@@ -275,6 +302,12 @@ body {
             }
         }
         
+        iframe{
+            margin-bottom: 10px;
+            width: 100%;
+            height: 500px;
+        }
+        
         .anchor{
             border-bottom-color: transparent;
             color: lighten(mix(@link-color, red, 40%), 30%);
@@ -342,6 +375,13 @@ body {
 		
 		h2{
 			margin: 0 0 5px;
+            
+            a{
+                &:hover{
+                    color: lighten(@link-color, 5%);
+                    text-decoration: none;
+                }
+            }
 		}
 		
 		.text-muted{
@@ -357,7 +397,7 @@ body {
 }
 
 .october-top {
-    background: url(../images/october-top.jpg) 45% 45%;
+    background: transparent;
     color: white;
     text-shadow: 1px 1px #000
 }
@@ -366,3 +406,11 @@ body {
 }
 
 .content-inner {min-height:400px;}
+
+
+#layout-footer{
+    background: fadeout(@brand-primary, 10%);
+    background-clip: padding-box;
+    border-top: 5px solid fadeout(@brand-primary, 30%);
+    border-bottom: 5px solid fadeout(@brand-primary, 30%);
+}

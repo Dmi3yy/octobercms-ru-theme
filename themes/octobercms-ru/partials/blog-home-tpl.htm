@@ -3,16 +3,17 @@
         <h4 class="headline"><span>Блог :: последние записи </span></h4>
         {% for post in posts %}
          <div class="tweet">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            <br />
             <small class="info">
-
                 {% for category in post.categories %}
                     <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+                    {% if loop.last %} :: {% endif %}
                 {% endfor %}
-                :: {{ post.published_at.diffForHumans }}
-            </small><br>
-            <a href="{{ post.url }}">{{ post.title }}</a>
+                <span class="text-muted">{{ post.published_at.diffForHumans }}</span>
+            </small>
             {% if post.excerpt %}
-                <p class="excerpt">{{ post.excerpt }} <a href="{{ post.url }}">подробнее...</a></p>
+                <p class="excerpt">{{ post.excerpt }}</p>
             {% else %}
                 <div class="content">{{ post.content_html|raw }}</div>
             {% endif %}

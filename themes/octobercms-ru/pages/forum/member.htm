@@ -8,15 +8,15 @@ idParam = ":slug"
 channelPage = "forum/channel"
 topicPage = "forum/topic"
 ==
-<section id="layout-title" class="october-top">
-    <div class="container">
-       <div class="col-sm-12">
-       		
-           	<h1>{{ member.username }}</h1>
-           
-       </div>
-    </div>
-</section>
+<?php
+function onEnd()
+{
+    // Optional - set the page title to the post title
+    if (isset($this['member']))
+        $this->page->title = $this['member']->username;
+}
+?>
+==
 <div class="container content-inner">
     <div class="row">
         <div class="col-sm-12">
