@@ -54,8 +54,15 @@ security = "all"
             </nav>
         </header>
         {% component 'session' %}
+        <section id="layout-title" class="logos october-top">
+            <div class="container">
+                <div class="col-sm-12">
+                    <h1>{{ this.page.title }}</h1>
+                </div>
+            </div>
+        </section>
         <!-- Content -->
-        <div id="layout-content">
+        <div id="layout-content" {% if this.page.id == 'home' %} style="padding-top:0;" {% endif %}>
             {% page %}
             <br>
         </div>
