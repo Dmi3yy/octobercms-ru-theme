@@ -9,6 +9,10 @@ memberPage = "forum/member"
 channelPage = "forum/channel"
 ==
 <?php
+function onInit()
+{
+    $this['activeMenuItem'] = 'forum';
+}
 function onEnd()
 {
     if (isset($this['topic']))

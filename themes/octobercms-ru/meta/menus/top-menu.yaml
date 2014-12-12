@@ -1,38 +1,17 @@
 name: 'Верхнее меню'
 items:
     -
-        title: Главная
-        nesting: ''
-        type: url
-        url: /
-        code: ''
-        reference: ''
-        cmsPage: ''
-        replace: ''
-    -
         title: Блог
-        nesting: ''
         type: cms-page
-        url: ''
-        code: ''
+        code: blog
         reference: blog
-        cmsPage: ''
-        replace: ''
     -
         title: Форум
-        nesting: ''
         type: cms-page
-        url: ''
-        code: ''
+        code: forum
         reference: forum
-        cmsPage: ''
-        replace: ''
     -
         title: Документация
-        nesting: ''
         type: cms-page
-        url: ''
-        code: ''
+        code: docs
         reference: docs
-        cmsPage: ''
-        replace: ''

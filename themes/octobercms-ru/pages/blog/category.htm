@@ -18,6 +18,10 @@ displayEmpty = "0"
 categoryPage = "blog/category"
 ==
 <?php
+function onInit()
+{
+    $this['activeMenuItem'] = 'blog';
+}
 function onEnd()
 {
     // Optional - set the page title to the category name

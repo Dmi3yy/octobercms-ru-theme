@@ -18,6 +18,10 @@ idParam = ":slug"
 memberPage = "forum/member"
 ==
 <?php
+function onInit()
+{
+    $this['activeMenuItem'] = 'blog';
+}
 function onEnd()
 {
     // Optional - set the page title to the post title

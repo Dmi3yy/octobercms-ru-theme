@@ -9,6 +9,10 @@ channelPage = "forum/channel"
 topicPage = "forum/topic"
 ==
 <?php
+function onInit()
+{
+    $this['activeMenuItem'] = 'forum';
+}
 function onEnd()
 {
     // Optional - set the page title to the post title
