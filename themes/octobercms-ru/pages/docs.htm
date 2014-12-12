@@ -1,5 +1,5 @@
 title = "Документация"
-url = "/docs/:slug?"
+url = "/docs/:docslug?"
 layout = "default"
 hidden = "0"
 ==
@@ -79,14 +79,14 @@ function onStart() {
                 {% for key, section in sections %}
                 <li class="header"><i class="icon icon-{{ section.icon }}"></i>{{ section.title }}</li>
                 {% for doc in docs[key] %}
-                <li class="item  {% if doc.url == this.param.slug %}active{% endif%}"><a href="/docs/{{ doc.url }}">{{ doc.title }}</a></li>
+                <li class="item  {% if doc.url == this.param.docslug %}active{% endif%}"><a href="/docs/{{ doc.url }}">{{ doc.title }}</a></li>
                 {% endfor %}
                 <li>&nbsp;</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="col-sm-9 docs">
-            {% content ['docs', this.param.slug|default('cms-themes.md')]|join('/') %}
+            {% content ['docs', this.param.docslug|default('cms-themes.md')]|join('/') %}
         </div>
     </div>
 </div>
