@@ -1,3 +1,24 @@
+==
+<?php
+function onStart() {
+ 
+    $embedInfo = DB::table('rainlab_forum_topics')
+                ->select(array('embed_code','count_views','count_posts'))
+                ->whereNotNull('embed_code')
+                ->get();
+    
+    foreach ($embedInfo as $val)
+    {
+        $key = $val->embed_code;
+        $infoViews[$key] = $val->count_views;
+        $infoPosts[$key] = $val->count_posts;
+    }
+    
+    $this['infoViews'] = $infoViews;
+    $this['infoPosts'] = $infoPosts;
+}
+?>
+==
 {% for post in posts %}
     <div class="blog">
        {# <img src="{{ 'assets/images/team/aleksey.png'|theme }}" alt=""> #}
@@ -8,7 +29,11 @@
             <p>{% for category in post.categories %}
                 <a href="{{ category.url }}">{{ category.name }}</a> {% if loop.last %} :: {% endif %} {% if not loop.last %}, {% endif %}
                 {% endfor %}
-                <span class="text-muted">{{ post.published_at.diffForHumans }}</span>
+                <span class="text-muted">{{ post.published_at.diffForHumans }}</span> :: 
+                <span class="text-muted">{{ infoViews[post.slug] }} <i class="fa fa-eye icon-eye-open"></i></span> :: 
+                <span class="text-muted">{{ infoPosts[post.slug] }} <i class="fa fa-comments-o icon-comments-o"></i></span> 
+                
+
             </p>
              {% if post.featured_images.0.path %}
             <a href="{{ post.url }}">
