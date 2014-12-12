@@ -79,9 +79,9 @@ function onStart() {
                 {% for key, section in sections %}
                 <li class="header"><i class="icon icon-{{ section.icon }}"></i>{{ section.title }}</li>
                 {% for doc in docs[key] %}
-                <li class="item  {% if doc.url == this.param.docslug %}active{% endif%}"><a href="/docs/{{ doc.url }}">{{ doc.title }}</a></li>
+                <li class="item  {% if doc.url == this.param.docslug|default('cms-themes.md') %}active{% endif%}"><a href="/docs/{{ doc.url }}">{{ doc.title }}</a></li>
                 {% endfor %}
-                <li>&nbsp;</li>
+                <li> </li>
                 {% endfor %}
             </ul>
         </div>
