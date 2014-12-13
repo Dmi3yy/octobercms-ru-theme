@@ -16,7 +16,9 @@ function onInit()
 function onEnd()
 {
     if (isset($this['topic']))
-        $this->page->title = $this['topic']->subject;
+        $this->page->title = 'Форум :: '.$this['topic']->channel->title; 
+        
+        
 }
 ?>
 ==
