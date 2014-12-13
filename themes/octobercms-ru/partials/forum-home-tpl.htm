@@ -16,11 +16,12 @@ function onStart() {
     {% for topic in forumLastTopics %}
 
          <div class="tweet">
-                <a href="/forum/topic/{{ topic.slug }}">{{ topic.subject }}</a> :: 
-                
+                <a href="/forum/topic/{{ topic.slug }}">{{ topic.subject }}</a>  
+                <small class="info"><br>
                 {# <span class="text-muted">{{ topic.created_at.diffForHumans }}</span> :: #}
-                <span class="text-muted">{{ topic.count_views }} <i class="fa fa-eye icon-eye-open"></i></span> ::
-                <span class="text-muted">{{ topic.count_posts }} <i class="fa fa-comments-o icon-comments-o"></i></span>
+                <span class="text-muted"><i class="fa fa-eye icon-eye-open"></i> {{ topic.count_views }}</span> ::
+                <span class="text-muted"><i class="fa fa-comments-o icon-comments-o"></i> {{ (topic.count_posts-1) }}</span>
+                </small>
         </div>
     {% endfor %}
 </div>
