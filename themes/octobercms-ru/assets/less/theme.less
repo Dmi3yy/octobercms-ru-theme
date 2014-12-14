@@ -33,6 +33,7 @@ body {
     background: url(../images/october-top.jpg) 50% 0% no-repeat;
     cursor: default;
     overflow-y: scroll;
+    .transition-duration(0.1s);
 }
 
 #layout-header {
@@ -55,6 +56,7 @@ body {
         border-radius: 0;
         border-top: 5px solid fadeout(@brand-primary, 30%);
         height: 57px;
+        z-index: 100;
 
 	    .navbar-nav{
             padding-top: 5px;
@@ -127,6 +129,11 @@ body {
 	            }
 	        }
 	    }
+        
+        .navbar-collapse{
+            background: fadeout(@brand-primary, 10%) padding-box;
+            border-radius: 0 0 5px 5px;
+        }
 	}
 }
 
@@ -183,6 +190,11 @@ body {
         margin: 0;
 	}
     
+    h1,h2,h3,h4,h5,h6{
+        color: @link-color;
+        margin: 40px 0 20px;
+    }
+    
     .jumbotron {
         padding-top: 56px;
         padding-bottom: 56px;
@@ -208,6 +220,20 @@ body {
         font-size: @font-size-base;
     }
     
+    .recent-tweets.blog{
+        .tweet{
+            a{
+                font-size: 120%;
+            }
+            
+            small{
+                a{
+                    font-size: 100%;
+                }
+            }
+        }
+    }
+    
     .docsmenu{
         .list-unstyled{            
             .header{
@@ -231,6 +257,7 @@ body {
                     &:hover{
                         color: @link-color;
                         border-bottom: 1px solid lighten(@link-color, 30%);
+                        text-decoration: none;
                     }
                 }
                 
@@ -246,17 +273,7 @@ body {
     
     .docs,.content{
         margin-bottom:30px;
-        
-        H1{
-        	margin-top: 0;
-        	padding-top: 0;
-        }
-        
-        H1, H2, H3, H4{
-            color: @link-color;
-        }
-        
-        H2, H3 {margin: 0 0 10px;}
+        position: relative;
         
         ul{
             list-style: none;
@@ -320,6 +337,23 @@ body {
                 color: @link-color;
             }
         }
+        
+        .link-edit{
+            span{
+                font-size: 170%;
+                color: lighten(@text-color, 50%);
+                position: absolute;
+                top: 0;
+                right: 20px;
+                .transition-duration(0.3s);
+            }
+            
+            &:hover{
+                span{
+                    color: @link-color;
+                }
+            }
+        }
     }
     
     // Forum 
@@ -335,15 +369,56 @@ body {
         }
         
         .forum-table{
-            border: 3px solid #eaeaea;
+            border: 3px solid #ccc;
             border-radius: 5px;
             overflow: hidden;
             
             table{
+                border-collapse: collapse;
                 width: 100%;
                 
-                tr:first-child th{
-                    border-top: 1px solid #fff;
+                th{
+                    font-size: 130%;
+                    font-weight: normal;
+                    color: @brand-primary;
+                    border: 1px solid #ccc;
+                    padding: 10px;
+                    background: #eaeaea; /* Old browsers */
+                    background: -moz-linear-gradient(top,  #eaeaea 0%, #e0e0e0 100%); /* FF3.6+ */
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eaeaea), color-stop(100%,#e0e0e0)); /* Chrome,Safari4+ */
+                    background: -webkit-linear-gradient(top,  #eaeaea 0%,#e0e0e0 100%); /* Chrome10+,Safari5.1+ */
+                    background: -o-linear-gradient(top,  #eaeaea 0%,#e0e0e0 100%); /* Opera 11.10+ */
+                    background: -ms-linear-gradient(top,  #eaeaea 0%,#e0e0e0 100%); /* IE10+ */
+                    background: linear-gradient(to bottom,  #eaeaea 0%,#e0e0e0 100%); /* W3C */
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#e0e0e0',GradientType=0 ); /* IE6-9 */
+                }
+                
+                tr{
+                    td{
+                        vertical-align: top;
+                        border: 1px solid #eee;
+                    }
+                }
+            }
+            
+            .forum-channel,
+            .forum-topic{
+                h3{
+                    font-size: 120%;
+                    margin: 0;
+                    
+                    a{
+                        display: block;
+                        
+                        &:hover{
+                            color: lighten(@link-color, 10%);
+                            text-decoration: none;
+                        }
+                    }
+                }
+                
+                .desc{
+                    font-size: 80%;
                 }
             }
         }
