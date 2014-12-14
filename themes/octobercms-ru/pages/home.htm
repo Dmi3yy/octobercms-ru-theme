@@ -11,6 +11,7 @@ postOrderAttr = "published_at desc"
 categoryPage = "404"
 postPage = "blog/post"
 ==
+
 <section class="home-title">
     <div class="container">
         <div class="row">
@@ -32,22 +33,17 @@ postPage = "blog/post"
 </section>
 
 
-
 <br />
 
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                {% partial 'blog-home-tpl' items=blogPosts.posts%}
+                {% partial 'blog-home-tpl' items=blogPosts.posts class='blog' %}
             </div>
             
             <div class="col-sm-4">
-                {% partial 'forum-home-tpl'%}
+                {% partial 'forum-home-tpl' class='forum' %}
             </div>
             
         </div>
     </div>
-
-
-
-<br />

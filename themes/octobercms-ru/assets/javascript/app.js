@@ -17,8 +17,29 @@
     });
     
     
-    $('#layout-content').css({ 
-        minHeight: $(window).height() - ( $('#layout-header').outerHeight() + $('#layout-footer').outerHeight() )
+    // Оформление внешних ссылок
+    
+    //$('a[href^=http]').attr({target:'_blank'});
+    
+    
+    // Изменение минимальной высоты страницы
+    
+    function res(){
+        $('#layout-content').css({ 
+            minHeight: $(window).height() - ( $('#layout-header').outerHeight() + $('#layout-title').outerHeight() + $('#layout-footer').outerHeight() )
+        })
+    }
+    
+    $(window).each( res ).resize( res );
+    
+    
+    // Убрать отступы у заголовков вначале статей
+    
+    $('#layout-content').find(':header').filter(function(index) {
+        return $(this).prev().length < 1;
+    }).css({
+        marginTop: 0,
+        paddingTop: 0
     })
     
     

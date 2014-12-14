@@ -87,6 +87,7 @@ function onStart() {
         </div>
         <div class="col-sm-9 docs">
             {% content ['docs', this.param.docslug|default('cms-themes.md')]|join('/') %}
+            <div class="link-edit"><a href="https://github.com/dmi3yy/octobercms-ru-theme/edit/master/themes/octobercms-ru/content/docs/{{ this.param.docslug }}"><span class="fui-new"></span></a></div>
         </div>
     </div>
 </div>

@@ -22,12 +22,12 @@
                                 <div class="topic-indicator {{ member and channel.hasNew ? 'has-new' }}"></div>
                             </td>
                             <td>
-                                <h5>
+                                <h3>
                                     <a href="{{ channel.url }}">
                                         {{ channel.title }}
                                     </a>
-                                </h5>
-                                <p>{{ channel.description }}</p>
+                                </h3>
+                                <p class="desc">{{ channel.description }}</p>
 
                                 {% if channel.children|length %}
                                     <div class="forum-subchannel">
@@ -53,10 +53,10 @@
                             <td class="activity-column">
                                 {% if channel.first_topic %}
                                     <p>
+                                        <small>{{ channel.first_topic.last_post_at.diffForHumans }}</small> :: 
                                         <a href="{{ channel.first_topic.url }}?page=last#post-{{ channel.first_topic.last_post_id }}">
                                            {{ channel.first_topic.subject }}
                                        </a>
-                                       <small>{{ channel.first_topic.last_post_at.diffForHumans }}</small>
                                     </p>
                                 {% endif %}
                             </td>
