@@ -26,7 +26,8 @@ function onEnd()
 {
     // Optional - set the page title to the post title
     if (isset($this['post']))
-        $this->page->title = $this['post']->title;
+        $this->page->title = $this['post']->title . ' - Блог  -';
+        $this->page->h1 = $this['post']->title;
 }
 ?>
 ==

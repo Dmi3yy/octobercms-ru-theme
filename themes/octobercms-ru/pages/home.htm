@@ -11,7 +11,6 @@ postOrderAttr = "published_at desc"
 categoryPage = "404"
 postPage = "blog/post"
 ==
-
 <section class="home-title">
     <div class="container">
         <div class="row">
@@ -44,6 +43,10 @@ postPage = "blog/post"
             <div class="col-sm-4">
                 {% partial 'forum-home-tpl' class='forum' %}
             </div>
-            
+            {#
+            <div class="col-sm-4">
+                {% partial 'comments-home-tpl' class='forum' %}
+            </div>
+            #}
         </div>
     </div>
