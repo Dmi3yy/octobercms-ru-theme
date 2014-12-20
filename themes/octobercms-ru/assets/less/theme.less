@@ -139,30 +139,11 @@ body {
 
 // Body header
 
-#layout-title {
-    padding-top: 20px;
-    padding-bottom: 20px;
+.padding {
+    padding: 50px;
     border: 5px solid fadeout(@brand-primary, 50%);
     border-left-color: fadeout(@brand-primary, 90%);
     border-right-color: fadeout(@brand-primary, 90%);
-    
-    .container{
-        padding: 0;
-        
-        div{
-            text-align: left;
-        }
-        
-        h1,p{
-            margin: 0;
-            font-size: 40px;
-            
-            span{
-                font-size: 26px;
-                padding: 0 5px;
-            }
-        }
-    }
 }
 
 #layout-content {
@@ -193,6 +174,12 @@ body {
     h1,h2,h3,h4,h5,h6{
         color: @link-color;
         margin: 40px 0 20px;
+    }
+    
+    .title{
+        text-align: center;
+        font-size: 250%;
+        margin-bottom: 70px;
     }
     
     .jumbotron {
@@ -469,6 +456,11 @@ body {
 			}
 		}
 	}
+    
+    
+    .icon-comments-o:before{
+        content: "\f0e6";
+    }
 }
 
 .october-top {
@@ -486,6 +478,5 @@ body {
 #layout-footer{
     background: fadeout(@brand-primary, 10%);
     background-clip: padding-box;
-    border-top: 5px solid fadeout(@brand-primary, 30%);
     border-bottom: 5px solid fadeout(@brand-primary, 30%);
 }

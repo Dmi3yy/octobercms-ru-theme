@@ -9,7 +9,7 @@ security = "all"
 <?php
 function onStart(){
     
-    $this->page->h1 = $this->page->title;
+    $this->page->h1 = $this->page->id != 'home' ? $this->page->title : '';
     $this->page->title = $this->page->id != 'home' ? $this->page->title . ' -' : '';
     
 }
@@ -62,18 +62,18 @@ function onStart(){
                 </div>
             </nav>
         </header>
+        
+        <div class="padding"></div>
+        
         {% component 'session' %}
-        <section id="layout-title" class="logos october-top">
-            <div class="container">
-                <div class="col-sm-12">
-                    <h1>{{ this.page.h1 }}</h1>
-                </div>
-            </div>
-        </section>
         <!-- Content -->
         <div id="layout-content" {% if this.page.id == 'home' %} style="padding-top:0;" {% endif %}>
+            {% if this.page.h1 != '' %}
+            <div class="container">
+                <h1 class="title">~ {{ this.page.h1 }} ~</h1>
+            </div>
+            {% endif %}
             {% page %}
-            <br>
         </div>
         
         {#
@@ -82,7 +82,9 @@ function onStart(){
             {% partial "subscribe" %}
         </section>
         #}
-
+        
+        <div class="padding"></div>
+        
         <!-- Footer -->
         <footer id="layout-footer">
             {% partial "footer" %}
