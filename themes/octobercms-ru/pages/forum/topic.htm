@@ -15,9 +15,13 @@ function onInit()
 }
 function onEnd()
 {
-    if (isset($this['topic']))
-         $this->page->h1 = 'Форум :: '.$this['topic']->channel->title;
-        $this->page->title = $this['topic']->channel->title .' - Форум - ';
+    if (isset($this['topic'])){
+     	$this->page->h1 = $this['topic']->subject;
+        $this->page->title = $this['topic']->subject . ' - ' . $this['topic']->channel->title . ' - Форум - ';
+        $this->page->desc = 'Форум ';
+        $this->page->linktext = $this['topic']->channel->title;
+        $this->page->link = $this['returnUrl'];
+    }
 }
 ?>
 ==

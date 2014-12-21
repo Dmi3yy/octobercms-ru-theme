@@ -16,8 +16,11 @@ function onInit()
 function onEnd()
 {
     // Optional - set the page title to the post title
-    if (isset($this['member']))
+    if (isset($this['member'])){
         $this->page->title = $this['member']->username;
+        $this->page->h1 = $this['member']->username;
+        $this->page->desc = $this['member']->is_moderator == 1 ? 'Администратор' : 'Пользователь';
+    }
 }
 ?>
 ==

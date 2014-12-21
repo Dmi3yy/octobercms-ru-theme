@@ -17,8 +17,9 @@ function onEnd()
 {
     // Optional - set the page title to the post title
     if (isset($this['channel']))
-        $this->page->h1 = 'Форум :: '.$this['channel']->title;
+        $this->page->h1 = $this['channel']->title;
         $this->page->title = $this['channel']->title .' - Форум - ';
+        $this->page->desc = 'Форум ';
 }
 ?>
 ==

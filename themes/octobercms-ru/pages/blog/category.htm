@@ -25,8 +25,11 @@ function onInit()
 function onEnd()
 {
     // Optional - set the page title to the category name
-    if ($this['category'])
-        $this->page->title = $this['category']->name;
+    if ($this['category']){
+        $this->page->title = $this['category']->name . ' - Категория блога - ';
+        $this->page->h1 = $this['category']->name;
+        $this->page->desc = 'Категория блога';
+    }
 }
 ?>
 ==
