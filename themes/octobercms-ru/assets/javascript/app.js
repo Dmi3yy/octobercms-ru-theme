@@ -25,9 +25,17 @@
     // Изменение минимальной высоты страницы
     
     function res(){
-        $('#layout-content').css({ 
-            minHeight: $(window).height() - ( $('#layout-header').outerHeight() + $('#layout-title').outerHeight() + $('#layout-footer').outerHeight() )
+        
+        h = 0;
+        
+        $('body').find('>*').each(function(){
+            h = h + $(this).not('#layout-content').outerHeight();
         })
+        
+        $('#layout-content').css({ 
+            minHeight: $(window).height() - h - 1
+        })
+
     }
     
     $(window).each( res ).resize( res );

@@ -59,17 +59,20 @@ body {
         z-index: 100;
 
 	    .navbar-nav{
-            padding-top: 5px;
+            padding: 0 3px;
+            margin-top: 5px;
+            margin-bottom: 5px;
             
 	        li{
 	            padding: 5px 0;
-                margin-left: 5px;
+                margin-left: 2px;
+                margin-right: 2px;
 	            
 	            a{
 	                text-transform: uppercase;
 	                font-weight: 500;
 	                padding: 5px 10px;
-	                border-radius: 6px !important;
+	                border-radius: 5px !important;
 	                
 	                &:hover{
 	                    background: fadeOut(#fff, 50%);
@@ -131,8 +134,13 @@ body {
 	    }
         
         .navbar-collapse{
-            background: fadeout(@brand-primary, 10%) padding-box;
-            border-radius: 0 0 5px 5px;
+            border: none;
+            
+            .nav{
+                background: @brand-primary;
+                border-radius: 5px;
+                box-shadow: -1px 1px 5px fadeout(#000, 70%) inset;
+            }
         }
 	}
 }
@@ -144,6 +152,23 @@ body {
     border: 5px solid fadeout(@brand-primary, 50%);
     border-left-color: fadeout(@brand-primary, 90%);
     border-right-color: fadeout(@brand-primary, 90%);
+}
+
+#layout-title{
+    background: fadeout(@brand-primary, 10%) padding-box;
+    
+    h1{
+        color: white;
+        margin: 0;
+        padding: 10px 0;
+    }
+    
+    .description{
+        color: fadeout(white, 30%);
+        padding: 0 0 10px;
+        margin-top: -5px;
+    }
+    
 }
 
 #layout-content {
@@ -174,12 +199,6 @@ body {
     h1,h2,h3,h4,h5,h6{
         color: @link-color;
         margin: 40px 0 20px;
-    }
-    
-    .title{
-        text-align: center;
-        font-size: 250%;
-        margin-bottom: 70px;
     }
     
     .jumbotron {
