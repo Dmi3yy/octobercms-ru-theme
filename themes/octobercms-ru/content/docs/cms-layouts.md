@@ -1,15 +1,15 @@
-# CMS Layouts
+# CMS макеты
 
-- [Introduction](#introduction)
-- [Placeholders](#placeholders)
-- [Dynamic layouts](#dynamic-layouts)
+- [# Введение](#introduction)
+- [# Плейсхолдеры](#placeholders)
+- [# Динамические макеты](#dynamic-layouts)
 
-Layouts define the page scaffold, that is everything that repeats on a page, such as a header and footer. Layouts often contain the HTML tag as well as the HEAD, TITLE and BODY tags.
+В макетах производится основная разметка, в них определяются верхние(header) и нижние(footer) участки страниц, использующих эти шаблоны. В основном, шаблоны содержат HTML теги, а так же HEAD, TITLE и теги BODY.
 
 <a name="introduction" class="anchor" href="#introduction"></a>
-## Introduction
+## Введение
 
-Layout templates reside in the **/layouts** subdirectory of a theme directory. Layout template files should have the **htm** extension. Inside the layout file you should use the `{% page %}` tag to output the page content. Simplest layout example:
+Макеты шаблонов находятся в **/layouts** поддиректории папки темы. Они имеют расширение **htm**. Внутри файла мекета имеется тег `{% page %}`, выводящий содержимое страницы. Пример простого макета:
 
     <html>
         <body>
