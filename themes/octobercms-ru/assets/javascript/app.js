@@ -51,7 +51,7 @@
     })
     
     
-    $('.tweet .info,.blog .text-muted, .date a, .forum-post .text-muted, .activity-column small').each(function(){
+    $('.tweet .info,.blog .text-muted, .date a, .forum-post .text-muted, .small').each(function(){
     	var t = $(this);
     	var text = t.html().
     		// seconds
@@ -74,6 +74,10 @@
     		replace(/(.*)(1)\ (week|weeks)\ ago(.*)/, '$1$2 неделю назад$4').
     		replace(/(.*)([2-4])\ weeks\ ago(.*)/, '$1$2 недели назад$3').
     		replace(/(.*)([5-9])\ weeks\ ago(.*)/, '$1$2 недель назад$3').
+            // months
+            replace(/(.*)(1)\ (month|months)\ ago(.*)/, '$1$2 месяц назад$4').
+            replace(/(.*)([2-4])\ months\ ago(.*)/, '$1$2 месяца назад$3').
+            replace(/(.*)([5-9])\ months\ ago(.*)/, '$1$2 месяцев назад$3').
     		// years
     		replace(/(.*)(1)\ (year|years)\ ago(.*)/, '$1$2 год назад$4').
     		replace(/(.*)([2-4])\ years\ ago(.*)/, '$1$2 года назад$3').

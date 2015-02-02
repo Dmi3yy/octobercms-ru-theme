@@ -28,9 +28,20 @@ function onEnd()
     if (isset($this['post'])){
         $this->page->title = $this['post']->title . ' - Блог  -';
         $this->page->h1 = $this['post']->title;
-        $this->page->desc = 'Из категории ';
-        $this->page->linktext = $this['post']->categories[0]->name;
-        $this->page->link = $this['post']->categories[0]->url;
+        
+        if ( $this['post']->categories->count() > 1 ){
+            
+            $rs = '<a href="'.explode('</a><a href="', $this['post']->categories).'</a>';
+            
+            $this->page->desc = 'Разделы :: '.$rs;
+            
+        } else {
+            
+            $this->page->desc = 'Раздел :: <a href="'.$this['post']->categories[0]->url.'">'.$this['post']->categories[0]->name.'</a>';
+            
+        }
+        
+        $this->page->desc .= ' :: <span class="small">'.$this['post']->published_at->diffForHumans().'</span>';
     }
 }
 ?>
