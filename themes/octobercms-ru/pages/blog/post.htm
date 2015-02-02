@@ -31,17 +31,20 @@ function onEnd()
         
         if ( $this['post']->categories->count() > 1 ){
             
-            $rs = '<a href="'.explode('</a><a href="', $this['post']->categories).'</a>';
-            
-            $this->page->desc = 'Разделы :: '.$rs;
+            //$rs = '<b><a href="'.implode('</a></b>, <b><a href="', $this['post']->categories).'</a></b>';
+            $rs = array();
+            foreach ( $this['post']->categories as $k => $v ){
+                $rs[] = '<b><a href="'.$v->url.'">'.$v->name.'</a></b>';
+            }
+            $this->page->desc = 'Содержится в разделах '.implode(', ', $rs);//$rs;
             
         } else {
             
-            $this->page->desc = 'Раздел :: <a href="'.$this['post']->categories[0]->url.'">'.$this['post']->categories[0]->name.'</a>';
+            $this->page->desc = 'Содержится в разделе <b><a href="'.$this['post']->categories[0]->url.'">'.$this['post']->categories[0]->name.'</a></b>';
             
         }
         
-        $this->page->desc .= ' :: <span class="small">'.$this['post']->published_at->diffForHumans().'</span>';
+        $this->page->desc .= '<br />Опубликована: <span class="date">'.$this['post']->published_at->diffForHumans().'</span>';
     }
 }
 ?>

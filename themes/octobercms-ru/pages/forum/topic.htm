@@ -18,9 +18,8 @@ function onEnd()
     if (isset($this['topic'])){
      	$this->page->h1 = $this['topic']->subject;
         $this->page->title = $this['topic']->subject . ' - ' . $this['topic']->channel->title . ' - Форум - ';
-        $this->page->desc = 'Форум ';
-        $this->page->linktext = $this['topic']->channel->title;
-        $this->page->link = $this['returnUrl'];
+        $this->page->desc = 'Размещена в разделе <b><a href="'.$this['returnUrl'].'">'.$this['topic']->channel->title.'</a></b><br />
+            Создана: <span class="date">'.$this['topic']->created_at->diffForHumans().'</span>';
     }
 }
 ?>

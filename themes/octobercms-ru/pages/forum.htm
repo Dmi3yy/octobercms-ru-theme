@@ -8,6 +8,11 @@ memberPage = "forum/member"
 channelPage = "forum/channel"
 topicPage = "forum/topic"
 ==
+<?php
+function onStart(){
+	$this->page->desc = 'Основное общение сообщества, в котором есть возможность обсудить свои идеи или найти что- то интересное для их реализации';
+}
+==
 <div class="container content-inner">
     <div class="row">
         {% component 'forumChannels' %}

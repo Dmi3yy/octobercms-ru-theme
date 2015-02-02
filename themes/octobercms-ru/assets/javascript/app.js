@@ -51,7 +51,7 @@
     })
     
     
-    $('.tweet .info,.blog .text-muted, .date a, .forum-post .text-muted, .small').each(function(){
+    $('.tweet .info,.blog .text-muted, .date, .date a, .forum-post .text-muted, .small, small').each(function(){
     	var t = $(this);
     	var text = t.html().
     		// seconds
