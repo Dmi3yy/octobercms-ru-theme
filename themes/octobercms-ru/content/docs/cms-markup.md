@@ -1,19 +1,18 @@
-# Markup Guide
+# Markup
 
-- [Default variables](#default-variables)
-- [Page links](#page-links)
-- [Links to asset files](#theme-filter)
-- [Flash messages](#flash-messages)
-- [Forms](#forms)
-- [Injecting CSS links](#styles-tag)
-- [Injecting JavaScript scripts](#scripts-tag)
+- [# Default variables](#default-variables)
+- [# Page links](#page-links)
+- [# Links to asset files](#theme-filter)
+- [# Flash messages](#flash-messages)
+- [# Forms](#forms)
+- [# Injecting CSS links](#styles-tag)
+- [# Injecting JavaScript scripts](#scripts-tag)
 
 October extends [Twig](http://twig.sensiolabs.org/documentation) engine with a number of functions, tags, filters and variables. Those extensions allow you to use the CMS features and access the page environment information inside your templates.
 
 Please refer to the [Twig documentation](http://twig.sensiolabs.org/doc/templates.html) for the full information about the native Twig language syntax and elements.
 
-<a name="default-variables" class="anchor" href="#default-variables"></a>
-## Default variables
+## <a name="default-variables" class="anchor" href="#default-variables"></a> Default variables
 
 The `this` variable is always presented in October Twig environment. This variable contains an object with three fields: 
 
@@ -40,20 +39,17 @@ The next example demonstrates how to access an URL parameter in a page:
         <p>This is the first post in the blog!</p>
     {% endif %}
 
-<a name="page-links" class="anchor" href="#page-links"></a>
-## Page links
+## <a name="page-links" class="anchor" href="#page-links"></a> Page links
 
 October provides several Twig filters that help to generate links to pages and asset files. 
 
-<a name="app-filter" class="anchor" href="#app-filter"></a>
-### Link to a page relative to the application
+### <a name="app-filter" class="anchor" href="#app-filter"></a> Link to a page relative to the application
 
 The `|app` filter returns an absolute URL, including the domain name and protocol, to a page specified in the parameter. The next example would return a string like **http://example.com/about-us**:
 
     <a href="{{ '/about-us'|app }}">About Us</a>
 
-<a name="page-filter" class="anchor" href="#page-filter"></a>
-### Link to a page file name with reverse routing
+### <a name="page-filter" class="anchor" href="#page-filter"></a> Link to a page file name with reverse routing
 
 The `|page` filter creates a link to a page using a page file name, without an extension, as a parameter. For example, if there is the about.htm page you can use the following code to generate a link to it:
 
@@ -73,8 +69,7 @@ Another great feature of the reverse routing is the route parameter persisting. 
 
 As you can see we don't need to specify the **post_id** parameter, because it is already known on the Preview page - it was loaded from the Preview Post page URL.
 
-<a name="theme-filter" class="anchor" href="#theme-filter"></a>
-## Links to asset files
+## <a name="theme-filter" class="anchor" href="#theme-filter"></a> Links to asset files
 
 Assets files reside in the **assets** subdirectory of a theme directory. October provides the `|theme` filter for creating links to assets files. The next example shows how to refer to a JavaScript file from the theme assets directory:
 
@@ -86,8 +81,7 @@ The `|theme` filter allows to combine assets of the same type on the fly by pass
 
 You can enable the assets minification with the `enableAssetMinify` parameter in the `app/config/cms.php` script. By default the minification is disabled.
 
-<a name="flash-messages" class="anchor" href="#flash-messages"></a>
-## Flash messages
+## <a name="flash-messages" class="anchor" href="#flash-messages"></a> Flash messages
 
 Flash messages can be set by [Components](components) or inside the page or layout [PHP section](themes#php-section) with the Flash class. Examples:
 
@@ -107,13 +101,11 @@ The `{% flash %}` tag has an optional parameter that allows to filter flash mess
         <div class="alert alert-success">{{ message }}</div>
     {% endflash %}
 
-<a name="forms" class="anchor" href="#forms"></a>
-## Forms
+## <a name="forms" class="anchor" href="#forms"></a> Forms
 
 October provides the `form_open()`, `form_ajax()` and `form_close()` functions that simplify creating the FORM tags. Using the functions is not necessary, but you may find that in many cases using the functions is simpler than listing all required attributes in the standard FORM tag. 
 
-<a name="standard-form" class="anchor" href="#standard-form"></a>
-### Opening the standard form
+### <a name="standard-form" class="anchor" href="#standard-form"></a> Opening the standard form
 
 The next example shows several examples of opening a standard (non AJAX) form with different parameters:
 
@@ -131,8 +123,7 @@ The first parameter of the `form_open()` function accepts the option object. The
 * **files** - determines whether the form will submit files. Accepted values: **true** and **false**.
 * **model** - a model object for the form model binding.
 
-<a name="ajax-form" class="anchor" href="#ajax-form"></a>
-### Opening the AJAX form
+### <a name="ajax-form" class="anchor" href="#ajax-form"></a> Opening the AJAX form
 
 The next example shows several examples of opening a AJAX form. The first parameter of the `form_ajax()` function is the AJAX handler name. The handler can be defined in the layout or page PHP [section](themes#php-section) or in a component. You may find more information about AJAX in the [AJAX Framework](ajax) article.
 
@@ -153,8 +144,7 @@ The second parameter accepts the option object. The function supports the follow
 * **update** - an array of partials to update on success in the following format: { 'partial': '#element' }.
 * **data** - extra data to include with the request in the following format: { 'myvar': 'myvalue' }
 
-<a name="styles-tag" class="anchor" href="#styles-tag"></a>
-## Injecting CSS links
+## <a name="styles-tag" class="anchor" href="#styles-tag"></a> Injecting CSS links
 
 The `{% styles %}` tag inserts CSS links to files added by [components](../plugin/components#component-assets), or [pages](../cms/pages#injecting-assets). The tag is commonly defined in the HEAD section of a page or layout:
 
@@ -169,8 +159,7 @@ Another way to add styles to the `{% styles %}` tag is using the **styles**  ano
         <link href="/themes/demo/assets/css/page.css" rel="stylesheet">
     {% endput %}
 
-<a name="scripts-tag" class="anchor" href="#scripts-tag"></a>
-## Injecting JavaScript scripts
+## <a name="scripts-tag" class="anchor" href="#scripts-tag"></a> Injecting JavaScript scripts
 
 The `{% scripts %}` tag inserts JavaScript file references to scripts added by [components](../plugin/components#component-assets), or [pages](../cms/pages#injecting-assets). The tag is commonly defined before the closing BODY tag:
 
