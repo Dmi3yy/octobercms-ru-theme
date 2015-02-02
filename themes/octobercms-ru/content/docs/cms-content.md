@@ -1,3 +1,5 @@
+# Содержимое ( Content )
+
 Content blocks are text, HTML or [Markdown](http://daringfireball.net/projects/markdown/syntax) blocks that can be edited separately from the page or layout. Content blocks files reside in the **/content** subdirectory of a theme directory. The following extensions are supported for content files:
 
 - **htm** - for HTML markup.
