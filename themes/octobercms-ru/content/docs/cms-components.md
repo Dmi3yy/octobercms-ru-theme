@@ -1,4 +1,4 @@
-# Using Components
+# Использование компонент ( Components )
 
 - [Introduction](#introduction)
 - [Component aliases](#aliases)
@@ -8,8 +8,7 @@ Components are configurable building elements that can be attached to any page o
 
 This article describes the components basics and doesn't explain how to use components with AJAX. This topic is described in the [AJAX](ajax) article.
 
-<a name="introduction" class="anchor" href="#introduction"></a>
-## Introduction
+## <a name="introduction" class="anchor" href="#introduction"></a> Introduction
 
 If you use the back-end user interface you can add components to your pages and layouts by clicking the component in the Components panel. If you use a text editor you can attach a component to a page or layout by adding its name to the [Configuration](themes#configuration-section) section of the template file. The next example demonstrates how to add a demo To-do component to a page:
 
@@ -29,8 +28,7 @@ When you refer a component, it automatically creates a page variable that matche
 
 > **Note:** If two components with the same name are assigned to a page and layout together, the page component overrides any properties of the layout component.
 
-<a name="aliases" class="anchor" href="#aliases"></a>
-## Components aliases
+## <a name="aliases" class="anchor" href="#aliases"></a> Components aliases
 
 If there are two plugins that register components with the same name, you can attach a component by using its fully qualified class name and assigning it an *alias*:
 
@@ -48,8 +46,7 @@ The aliases also allow you to define multiple components of the same class on a 
     [demoTodo todoB]
     maxItems = 20
 
-<a name="variables" class="anchor" href="#variables"></a>
-## Passing variables to components
+## <a name="variables" class="anchor" href="#variables"></a> Passing variables to components
 
 Components can sometimes use variables at the time they are rendered, similar to [Partials](partials), they can be specified after the component name in the `{% component %}` tag:
 
