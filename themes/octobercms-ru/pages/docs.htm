@@ -68,7 +68,7 @@ function onStart() {
     $this['documents'] = $documents;
     $this['sections'] = $sections;
     $this['docs'] = $docs;
-    $this->page->desc = 'Собрание всего, что поспособствует изучению OctoberCMS. Постарайтесь внимательно отнестить к данной информации, она поможет сэкономить силы и время. Если что- то не получается, не беспокойтесь, пройдитесь по улице, пообщайтесь с друзьями, всё станет ясно.';
+    $this->page->desc = 'Собрание всего, что поспособствует изучению OctoberCMS';
     
 }
 ?>
@@ -89,7 +89,7 @@ function onStart() {
         <div class="col-sm-9 docs">
           {#  <h1>{{ documents[this.param.docslug|default('cms-themes.md')] }}</h1> #}
             {% content ['docs', this.param.docslug|default('cms-themes.md')]|join('/') %}
-            <div class="link-edit"><a href="https://github.com/dmi3yy/octobercms-ru-theme/edit/master/themes/octobercms-ru/content/docs/{{ this.param.docslug }}"><span class="fui-new"></span></a></div>
+            <div class="link-edit"><a href="https://github.com/OctoberCMSru/docs/edit/master/{{ this.param.docslug }}"><span class="fui-new"></span></a></div>
         </div>
     </div>
 </div>
