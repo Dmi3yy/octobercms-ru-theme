@@ -27,7 +27,7 @@ function onStart() {
                 <a href="{{ post.url }}">{{ post.title }}</a>
             </h2>
             <p>{% for category in post.categories %}
-                <a href="{{ category.url }}">{{ category.name }}</a> {% if loop.last %} :: {% endif %} {% if not loop.last %}, {% endif %}
+                <a href="{{ category.url }}">{{ category.name }}</a>{% if loop.last %} :: {% endif %}{% if not loop.last %}, {% endif %}
                 {% endfor %}
                 <span class="text-muted">{{ post.published_at.diffForHumans }}</span> :: 
                 <span class="text-muted">{{ infoViews[post.slug] }} <i class="fa fa-eye icon-eye-open"></i></span> :: 

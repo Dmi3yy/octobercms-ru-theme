@@ -1,14 +1,14 @@
-# Макеты ( Layouts )
+# Шаблоны ( Layouts )
 
 - [# Введение](#introduction)
 - [# Плейсхолдеры](#placeholders)
 - [# Динамические макеты](#dynamic-layouts)
 
-В макетах производится основная разметка, в них определяются верхние(header) и нижние(footer) участки страниц, использующих эти шаблоны. В основном, шаблоны содержат HTML теги, а так же HEAD, TITLE и теги BODY.
+В шаблонах определяются разметка верхних (header) и нижних (footer) участков страниц. В основном, шаблоны содержат HTML, HEAD, TITLE и BODY.
 
 ## <a name="introduction" class="anchor" href="#introduction"></a> Введение
 
-Макеты шаблонов находятся в **/layouts** поддиректории папки темы. Они имеют расширение **htm**. Внутри файла мекета имеется тег `{% page %}`, выводящий содержимое страницы. Пример простого макета:
+Шаблоны находятся в корне папки темы, в поддиректории **/layouts**. Имеют расширение **htm**. Внутри файла шаблона имеется тег `{% page %}`, выводящий содержимое страницы. Пример простого макета:
 
     <html>
         <body>
@@ -16,26 +16,28 @@
         </body>
     </html>
 
-To use a layout for a [page](pages) the page should refer the layout file name (without extension) in the [Configuration](themes#configuration-section) section. Remember that if you refer a layout from a [subdirectory](themes#subdirectories) you should specify the subdirectory name. Example page template using the default.md layout:
+Чтобы использовать шаблон, в [странице](cms-pages.md) должно быть указано его название (без расширения), в секции [Конфигурации](cms-themes.md#configuration-section), значением параметра layout:
 
     url = "/"
     layout = "default"
     ==
-    <p>Hello, world!</p>
+    <p>Привет, Мир!</p>
+    
+>Необходимо помнить, что при хранении шаблона в [поддиректории](cms-themes.md#subdirectories) нужно указывать полный путь **subdirectory/layout**
 
-When this page is requested its content is merged with the layout, or more precisely - the layout's `{% page %}` tag is replaced with the page content. The previous examples would generate the following markup:
+При вызове этой страницы в браузере, отобразится содержимое шаблона, при этом тег `{% page %}` заменится содержимым этой страницы, и, если разметка была осуществлена как указано выше, выведется:
 
     <html>
         <body>
-            <p>Hello, world!</p>
+            <p>Привет, Мир!</p>
         </body>
     </html>
 
-Note that you can render [partials](partials) in layouts. This lets you to share the common markup elements between different layouts. For example, you can have a partial that outputs the website CSS and JavaScript links. This approach simplifies the resource management - if you want to add a JavaScript reference you should modify a single partial instead of editing all the layouts.
+Следует обратить внимание на создание [чанков](cms-partials.md) и использование их в шаблонах. Это позволяет использовать одинаковую разметку в разных шаблонах, что даёт возможность редактировать эти участки не перебирая каждый шаблон. Как пример, использование стилей CSS и привязка JavaScript файлов.
 
-The [Configuration](themes#configuration-section) section is optional for layouts. The supported configuration parameters are **name** and **description**. The parameters are optional and used in the back-end user interface. Example layout template with a description:
+Секция [Конфигурации](cms-themes.md#configuration-section) является необязательным для шаблонов. В ней используются такие параметры как **name** и **description**. Эти параметры необязательны и нужны лишь для интерфейса административной части. Пример конфигурации шаблона с параметром его описания:
 
-    description = "Basic layout example"
+    description = "Простой пример шаблона"
     ==
     <html>
         <body>
@@ -43,9 +45,9 @@ The [Configuration](themes#configuration-section) section is optional for layout
         </body>
     </html>
 
-## <a name="placeholders" class="anchor" href="#placeholders"></a> Placeholders
+## <a name="placeholders" class="anchor" href="#placeholders"></a> Плейсхолдеры
 
-Placeholders allow pages to inject content to the layout. Placeholders are defined in the layout templates with the `{% placeholder name %}` tag. The next example shows a layout template with a placeholder **head** defined in the HTML HEAD section.
+Плейсхолдеры дают возможность использовать какой угодно код в содержимом страниц, в определённом заранее месте их шаблона, тегом `{% placeholder name %}`:
 
     <html>
         <head>
@@ -53,8 +55,7 @@ Placeholders allow pages to inject content to the layout. Placeholders are defin
         </head>
         ...
 
-Pages can inject content to placeholders with the `{% put %}` and `{% endput %}` tags. The following example demonstrates a simple page template which injects a CSS link to the placeholder **head** defined in the previous example
-
+Страницы, использующие шаблон выше, могут вводить в эти места код посредствам тегов `{% put %}` и `{% endput %}` следующим образом:
 
     url = "/my-page"
     layout = "default"
@@ -63,27 +64,29 @@ Pages can inject content to placeholders with the `{% put %}` and `{% endput %}`
         <link href="/themes/demo/assets/css/page.css" rel="stylesheet">
     {% endput %}
 
-    <p>The page content goes here.</p>
+    <p>Какое- то содержание страницы.</p>
 
-Placeholders can have default content, that can be either replaced or complemented by a page. Example placeholder definition in the layout template:
+Плейсхолдеры могут быть определены значением по умолчанию, которое может переопределяться или дополняться в содержимом страниц:
 
     {% placeholder sidebar default %}
-        <p><a href="/contacts">Contact us</a></p>
+        <p><a href="/contacts">Контакты</a></p>
     {% endplaceholder %}
 
-The page can inject more content to the placeholder. The `{% default %}` tag specifies a place where the default placeholder content should be displayed. If the tag is not used the placeholder content is completely replaced.
+Как говорилось выше, значение по умолчанию можно дополнять при помощи тега `{% default %}`:
 
     {% put sidebar %}
-        <p><a href="/services">Services</a></p>
+        <p><a href="/services">Сервис</a></p>
         {% default %}
     {% endput %}
+    
+Если не указать этот тег, значение по умолчанию будет заменено.
 
-### <a name="checking-placeholder-exits" class="anchor" href="#checking-placeholder-exits"></a> Checking a placeholder exists
+### <a name="checking-placeholder-exits" class="anchor" href="#checking-placeholder-exits"></a> Проверка плейсхолдера на странице
 
-In a layout template you can check if a placeholder content exists by using the `placeholder()` function. This lets you to generate different markup depending on whether the page provides a placeholder content. Example:
+В шаблоне можно использовать проверку на указание в содержимом страницы в плейсхолдер за счёт функции `placeholder()`, что позволяет добиться какой угодно разметки, в зависимости от того, что указано в содержимом страниц:
 
     {% if placeholder('sidemenu') %}
-        <!-- Markup for a page with a sidebar -->
+        <!-- Разметка страниц использующих боковое меню -->
         <div class="row">
             <div class="col-md-3">
                 {% placeholder sidemenu %}
@@ -93,19 +96,27 @@ In a layout template you can check if a placeholder content exists by using the 
             </div>
         </div>
     {% else %}
-        <!-- Markup for a page without a sidebar -->
+        <!-- Разметка страниц не использующих боковое меню -->
         {% page %}
     {% endif %}
 
-## <a name="dynamic-layouts" class="anchor" href="#dynamic-layouts"></a> Dynamic layouts
+## <a name="dynamic-layouts" class="anchor" href="#dynamic-layouts"></a> Динамичность шаблонов
 
-Layouts, like pages, can use any Twig features. Please refer to the [Dynamic pages](pages#dynamic-pages) documentation for details. Inside the layout's [PHP section](themes#php-section) you can define the following functions for handling the page execution life cycle: `onStart()`, `onBeforePageStart()` and `onEnd()`. The `onStart()` function is executed in the beginning of the page processing. The `onBeforePageStart()` function is executed after the layout [components](components) ran, but before the page's `onStart()` function is executed. The `onEnd()` function is executed after the page is rendered. The sequence the handlers are executed is following:
+Шаблоны, как и страницы, могут использовать любые возможсности Twig ( [Динамичность страниц](cms-pages.md#dynamic-pages) ). В шаблонах указываются [PHP секции](themes#php-section) которые могут выполняться в определённые циклы загрузки страницы, за счёт функций: `onStart()`, `onBeforePageStart()` и `onEnd()`. 
 
-* Layout `onStart()` function.
-* Layout components `onRun()` method.
-* Layout `onBeforePageStart()` function.
-* Page `onStart()` function.
-* Page components `onRun()` method.
-* Page `onEnd()` function.
-* Layout `onEnd()` function.
+Функция `onStart()` выполняется в самом начале обработки страницы. 
+
+`onBeforePageStart()` выполняется после того как запустятся [компоненты](components), но перед функцией `onStart()`. 
+
+`onEnd()` запускается после обработки страницы. 
+
+Последовательность обработки выполняется в следующем порядке:
+
+1. `onStart()` функция шаблона
+2. `onRun()` метод компонент шаблона
+3. `onBeforePageStart()` функция шаблона
+4. `onStart()` функция страницы
+5. `onRun()` метод компонент страницы
+6. `onEnd()` функция страницы
+7. `onEnd()` функция шаблона
 
