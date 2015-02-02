@@ -57,7 +57,7 @@ body {
         border-top: 5px solid fadeout(@brand-primary, 30%);
         height: 57px;
         z-index: 100;
-
+        
 	    .navbar-nav{
             padding: 0 3px;
             margin-top: 5px;
@@ -141,6 +141,13 @@ body {
                 border-radius: 5px;
             }
         }
+        
+        .navbar-toggle{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+        }
 	}
 }
 
@@ -159,7 +166,7 @@ body {
     padding: 10px 0 10px;
     
     .description{
-        font-size: 14px;
+        font-size: 16px;
         
         span{
             font-size: 10px;
@@ -189,13 +196,13 @@ body {
     }
     
     hr{
-		border-color: #EEE -moz-use-text-color -moz-use-text-color;
+		border-color: #e0e0e0;
         margin: 0;
 	}
     
     h1,h2,h3,h4,h5,h6{
         color: @link-color;
-        margin: 40px 0 20px;
+        margin: 20px 0 10px;
     }
     
     #title{
@@ -203,6 +210,11 @@ body {
         
         h1{
             margin-bottom: 0;
+        }
+        
+        .description{
+            color: #999;
+            margin-top: 10px;
         }
     }
     

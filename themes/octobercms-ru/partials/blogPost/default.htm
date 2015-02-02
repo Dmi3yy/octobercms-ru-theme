@@ -13,16 +13,3 @@
         {% endfor %}
     </div>
 {% endif %}
-
-<p class="info">
-<hr>
-    Категории:
-    {% if post.categories.count %}
-        {% for category in post.categories %}
-            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-        {% endfor %}
-    {% endif %}
-    <br>
-    Опубликован: {{ post.published_at|date('d-m-Y') }}
-<hr>
-</p>
