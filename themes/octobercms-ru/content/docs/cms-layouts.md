@@ -1,4 +1,4 @@
-# CMS макеты
+# Макеты ( Layouts )
 
 - [# Введение](#introduction)
 - [# Плейсхолдеры](#placeholders)
@@ -6,8 +6,7 @@
 
 В макетах производится основная разметка, в них определяются верхние(header) и нижние(footer) участки страниц, использующих эти шаблоны. В основном, шаблоны содержат HTML теги, а так же HEAD, TITLE и теги BODY.
 
-<a name="introduction" class="anchor" href="#introduction"></a>
-## Введение
+## <a name="introduction" class="anchor" href="#introduction"></a> Введение
 
 Макеты шаблонов находятся в **/layouts** поддиректории папки темы. Они имеют расширение **htm**. Внутри файла мекета имеется тег `{% page %}`, выводящий содержимое страницы. Пример простого макета:
 
@@ -44,8 +43,7 @@ The [Configuration](themes#configuration-section) section is optional for layout
         </body>
     </html>
 
-<a name="placeholders" class="anchor" href="#placeholders"></a>
-## Placeholders
+## <a name="placeholders" class="anchor" href="#placeholders"></a> Placeholders
 
 Placeholders allow pages to inject content to the layout. Placeholders are defined in the layout templates with the `{% placeholder name %}` tag. The next example shows a layout template with a placeholder **head** defined in the HTML HEAD section.
 
@@ -80,8 +78,7 @@ The page can inject more content to the placeholder. The `{% default %}` tag spe
         {% default %}
     {% endput %}
 
-<a name="checking-placeholder-exits" class="anchor" href="#checking-placeholder-exits"></a>
-### Checking a placeholder exists
+### <a name="checking-placeholder-exits" class="anchor" href="#checking-placeholder-exits"></a> Checking a placeholder exists
 
 In a layout template you can check if a placeholder content exists by using the `placeholder()` function. This lets you to generate different markup depending on whether the page provides a placeholder content. Example:
 
@@ -100,8 +97,7 @@ In a layout template you can check if a placeholder content exists by using the 
         {% page %}
     {% endif %}
 
-<a name="dynamic-layouts" class="anchor" href="#dynamic-layouts"></a>
-## Dynamic layouts
+## <a name="dynamic-layouts" class="anchor" href="#dynamic-layouts"></a> Dynamic layouts
 
 Layouts, like pages, can use any Twig features. Please refer to the [Dynamic pages](pages#dynamic-pages) documentation for details. Inside the layout's [PHP section](themes#php-section) you can define the following functions for handling the page execution life cycle: `onStart()`, `onBeforePageStart()` and `onEnd()`. The `onStart()` function is executed in the beginning of the page processing. The `onBeforePageStart()` function is executed after the layout [components](components) ran, but before the page's `onStart()` function is executed. The `onEnd()` function is executed after the page is rendered. The sequence the handlers are executed is following:
 
