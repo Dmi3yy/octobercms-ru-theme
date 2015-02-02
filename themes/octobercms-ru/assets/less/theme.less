@@ -139,7 +139,6 @@ body {
             .nav{
                 background: @brand-primary;
                 border-radius: 5px;
-                box-shadow: -1px 1px 5px fadeout(#000, 70%) inset;
             }
         }
 	}
@@ -154,21 +153,19 @@ body {
     border-right-color: fadeout(@brand-primary, 90%);
 }
 
-#layout-title{
+#layout-description{
     background: fadeout(@brand-primary, 10%) padding-box;
-    
-    h1{
-        color: white;
-        margin: 0;
-        padding: 10px 0;
-    }
+    color: fadeout(white, 30%);
+    padding: 10px 0 10px;
     
     .description{
-        color: fadeout(white, 30%);
-        padding: 0 0 10px;
-        margin-top: -5px;
+        font-size: 14px;
+        
+        span{
+            font-size: 10px;
+            padding: 0 5px;
+        }
     }
-    
 }
 
 #layout-content {
@@ -199,6 +196,14 @@ body {
     h1,h2,h3,h4,h5,h6{
         color: @link-color;
         margin: 40px 0 20px;
+    }
+    
+    #title{
+        margin-bottom: 50px;
+        
+        h1{
+            margin-bottom: 0;
+        }
     }
     
     .jumbotron {
@@ -479,6 +484,27 @@ body {
     
     .icon-comments-o:before{
         content: "\f0e6";
+    }
+    
+    
+    .pagination{
+        a{
+            font-size: 14px;
+            color: @link-color;
+            
+            &:hover{
+                color: white;
+                text-decoration: none;
+            }
+        }
+        
+        li.active{
+            a{
+                margin: 10px 10px 9px;
+                cursor: default;
+                color: fadeout(@brand-primary, 30%);
+            }
+        }
     }
 }
 

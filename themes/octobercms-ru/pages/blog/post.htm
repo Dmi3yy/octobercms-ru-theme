@@ -28,9 +28,7 @@ function onEnd()
     if (isset($this['post'])){
         $this->page->title = $this['post']->title . ' - Блог  -';
         $this->page->h1 = $this['post']->title;
-        $this->page->desc = 'Из категории ';
-        $this->page->linktext = $this['post']->categories[0]->name;
-        $this->page->link = $this['post']->categories[0]->url;
+        $this->page->desc = '<a href="'.$this['post']->categories[0]->url.'">'.$this['post']->categories[0]->name.'</a>';
     }
 }
 ?>

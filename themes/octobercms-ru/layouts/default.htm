@@ -65,13 +65,10 @@ function onStart(){
         
         <div class="padding"></div>
         
-        {% if this.page.h1 != '' %}
-        <div id="layout-title">
+        {% if this.page.desc %}
+        <div id="layout-description">
             <div class="container">
-                <h1>{{ this.page.h1 }}</h1>
-                {% if this.page.desc or this.page.link %}
-                <div class="description">{{ this.page.desc }}{% if this.page.link %}<a href="{{ this.page.link }}">{{ this.page.linktext }}</a>{% endif %}</div>
-                {% endif %}
+                <div class="description">{{ this.page.desc|raw }}</div>
             </div>
         </div>
         {% endif %}
@@ -79,6 +76,13 @@ function onStart(){
         {% component 'session' %}
         <!-- Content -->
         <div id="layout-content" {% if this.page.id == 'home' %} style="padding-top:0;" {% endif %}>
+            {% if this.page.h1 %}
+            <div id="title">
+                <div class="container">
+                    <h1>{{ this.page.h1 }}</h1>
+                </div>
+            </div>
+            {% endif %}
             {% page %}
         </div>
         
