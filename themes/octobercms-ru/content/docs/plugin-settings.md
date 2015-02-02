@@ -1,13 +1,12 @@
-# Plugin Settings & Configuration
+# Настройки плагина & Конфигурация
 
-- [Database settings](#database-settings)
-- [Back-end settings forms](#backend-forms)
-- [File-based configuration](#file-configuration)
+- [# Database settings](#database-settings)
+- [# Back-end settings forms](#backend-forms)
+- [# File-based configuration](#file-configuration)
 
 There are two ways to configure plugins - with the back-end settings forms and with the configuration files. The back-end settings forms provide the better user experience, but they are more complicated for the development.
 
-<a name="database-settings" class="anchor" href="#database-settings"></a>
-## Database settings
+## <a name="database-settings" class="anchor" href="#database-settings"></a> Database settings
 
 You can create models for storing settings in the database by implementing the `SettingsModel` behavior in a model class. This model can be used directly for creating the back-end settings form. You don't need to create a database table and a controller for creating the back-end settings forms based on the settings model.
 
@@ -42,8 +41,7 @@ The `$settingsFields` property is required if are going to build a back-end sett
 
 Settings models can be registered in the [Plugin registration file](http://octobercms.com/docs/plugin/registration#backend-settings) to appear on the **back-end Settings page**, but it is not a requirement - you can set and read settings values like any other model.
 
-<a name="writing-settings" class="anchor" href="#writing-settings"></a>
-### Writing to a settings model
+### <a name="writing-settings" class="anchor" href="#writing-settings"></a> Writing to a settings model
 
 The settings model has the static `set()` method that allows to save individual or multiple values. You can also use the standard model features for setting the model properties and saving the model.
 
@@ -62,8 +60,7 @@ The settings model has the static `set()` method that allows to save individual 
     $settings->api_key = 'ABCD';
     $settings->save();
 
-<a name="reading-settings" class="anchor" href="#reading-settings"></a>
-### Reading from a settings model
+### <a name="reading-settings" class="anchor" href="#reading-settings"></a> Reading from a settings model
 
 The settings model has the static `get()` method that lets you to load individual properties. Also, when you instantiate a model with the `instance()` method it loads the properties from the database and you can access them directly.
 
@@ -76,8 +73,7 @@ The settings model has the static `get()` method that lets you to load individua
     // Get a value and return a default value if it doesn't exist
     echo Settings::get('is_activated', true);
 
-<a name="file-configuration" class="anchor" href="#file-configuration"></a>
-## File-based configuration
+## <a name="file-configuration" class="anchor" href="#file-configuration"></a> File-based configuration
 
 Plugins can have a configuration file `config.php` in the `config` subdirectory of the plugin directory. The configuration files are PHP scripts that define and return an **array**. Example configuration file `plugins/acme/demo/config/config.php`:
 
