@@ -1,14 +1,14 @@
 # Регистрация плагина
 
-- [Ознакомление](#introduction)
-- [Регистрация файла](#registration-file)
-- [Роутинг и инициализация](#routing-initialization)
-- [Регистрация компонента](#component-registration)
-- [Extending Twig](#extending-twig)
-- [Регистрация виджета](#widget-registration)
-- [Навигация и ограниченияNavigation and permissions](#navigation-permissions)
-- [Настройки Бекэнда](#backend-settings)
-- [Миграции и история версий](#migrations-version-history)
+- [# Ознакомление](#introduction)
+- [# Регистрация файла](#registration-file)
+- [# Роутинг и инициализация](#routing-initialization)
+- [# Регистрация компонента](#component-registration)
+- [# Extending Twig](#extending-twig)
+- [# Регистрация виджета](#widget-registration)
+- [# Навигация и ограниченияNavigation and permissions](#navigation-permissions)
+- [# Настройки Бекэнда](#backend-settings)
+- [# Миграции и история версий](#migrations-version-history)
 
 Плагины - это основа для расширения функционала CMS. Процесс регистрации плагина позволяет определить функции плагина, такие как [components](components) или менюшки и страницы бек энда. Некоторые примеры того, что можно сделать с помощью плагинов:
 
@@ -19,8 +19,7 @@
 - Изменить функциональность ядра или других плагинов.
 - Описать классы, контроллеры бек энда, представления, виды, и другие файлы.
 
-<a name="introduction" class="anchor" href="#introduction"></a>
-## Ознакомление
+## <a name="introduction" class="anchor" href="#introduction"></a> Ознакомление
 
 Все плагины находятся в подпапке **/plugins**. Структура директории плагина выглядит следующим образом:
 
@@ -45,13 +44,11 @@
 
 > **Помните**: если вы являетесь разработчиком плагина для [Marketplace](../help/marketplace), наличие файла [updates/version.yaml](#migrations-version-history) обязательно.
 
-<a name="namespaces" class="anchor" href="#namespaces"></a>
-### Символы в имени плагина
+### <a name="namespaces" class="anchor" href="#namespaces"></a> Символы в имени плагина
 
 Символы в именах плагинов очень важны, особенно если планируется, что Ваш плагин будет опубликова на [October Marketplace](http://octobercms.com/plugins). Когда Вы регистрируетесь как автор на Marketplace Вам будет предложено ввести авторский код, который как раз таки будет использован в качестве корневого имени директории для всех Ваших плагинов. Вы можете ввести авторский код только один раз, когда проходите регистрацию. По умолчанию Вам будет предложен авторский код от Marketplace, состоящий из Вашего имени и фамилии: VasyaPupkin. Повторимся, что данный код невозможно будет поменять после регистрации. Все Ваши плагины должны будут быть определены в папке `\VasyaPupkin\Blog`.
 
-<a name="registration-file" class="anchor" href="#registration-file"></a>
-## Регистрация файла
+## <a name="registration-file" class="anchor" href="#registration-file"></a> Регистрация файла
 
 Файл **Plugin.php**, названный как *Регистрационный файл плагина*, является скриптом инициализации, который объявляет основные функции и содержит в себе информацию о плагине. Регистрационный файлы могут содержать следующее:
 
@@ -82,8 +79,7 @@
         }
     }
 
-<a name="registration-methods" class="anchor" href="#registration-methods"></a>
-### Поддерживаемые методы
+### <a name="registration-methods" class="anchor" href="#registration-methods"></a> Поддерживаемые методы
 
 Следующие методы поддерживаются в регистрационном файле плагина:
 
@@ -98,8 +94,7 @@
 - **registerFormWidgets()** - регистрирует любые виджеты бэк энда, используемые этим плагином.
 - **registerReportWidgets()** - регистрирует любые виджеты отчетов, в том числе виджеты дашборда. 
 
-<a name="basic-plugin-information" class="anchor" href="#basic-plugin-information"></a>
-### Основная информация плагина
+### <a name="basic-plugin-information" class="anchor" href="#basic-plugin-information"></a> Основная информация плагина
 
 Метод `pluginDetails()` является обязательным методом класса регистрации плагина. Он должен возвращать массив, состоящий из 4 ключей:
 
@@ -108,8 +103,7 @@
 - **author** - имя автора плагина.
 - **icon** - имя иконки плагина. OctoberCMS пользует [Font Autumn icons](http://daftspunk.github.io/Font-Autumn/). Любое название иконки, предусмотренное этой коллекцией действительно, например **icon-glass**, **icon-music**.
 
-<a name="routing-initialization" class="anchor" href="#routing-initialization"></a>
-## Маршрутизация и инициализация
+## <a name="routing-initialization" class="anchor" href="#routing-initialization"></a> Маршрутизация и инициализация
 
 Файлы регистрации плагина могут содержать для метода `boot()` и `register()`. С этими методами Вы можете делать всё, что только пожелаете, допустим зарегистрировать маршруты или пришпилить обработчики к событиям.
 
@@ -130,8 +124,7 @@
 
     });
 
-<a name="component-registration" class="anchor" href="#component-registration"></a>
-## Регистрация компонента
+## <a name="component-registration" class="anchor" href="#component-registration"></a> Регистрация компонента
 
 [Components](components) должен быть зарегистрирован в [Файле регистрации плагина](#registration-file). Это укажет CMS о компоненте и предоставит **short name** для использования. Пример регистрации компонента:
 
@@ -144,8 +137,7 @@
 
 Этот код регистрирует класс компонента ТуДу с именем алиаса **demoTodo** по умолчанию. Больше информации по созданию компонентов Вы можете найти на страницах [Создание компонентов](components).
 
-<a name="extending-twig" class="anchor" href="#extending-twig"></a>
-## Расширения Twig
+## <a name="extending-twig" class="anchor" href="#extending-twig"></a> Расширения Twig
 
 Пользовательские Twif фильтры и функции могут быть зарегистрированы в CMS с методом класса регистрации плагина `registerMarkupTags()`. Следующий пример регистрирует два Twig фильтра и две функции.
 
@@ -174,8 +166,7 @@
         return strtoupper($text);
     }
 
-<a name="widget-registration" class="anchor" href="#widget-registration"></a>
-## Регистрация виджета
+## <a name="widget-registration" class="anchor" href="#widget-registration"></a> Регистрация виджета
 
 Плагины могут регистрировать [формы виджетов](../backend/widgets#form-widgets) путем переопределения метода `registerFormWidgets()` в классе регистрации плагина. Этот метод должен возвращать массив, содержащий классы виджетов в ключах, имена виджетов и контекст в значениях. Например:
 
@@ -207,8 +198,7 @@
 
 Тут, элемент **name** определяет имя виджета для кнопки Добавить Виджет во всплывающем окошке. Элемент **context** определяет контекст, где виджет может быть запользован. Система отчетов виджетов OctoberCMS позволяет разместить контейнер с отчетом на любой странице, и имя контейнера контекста должно быть уникальным. Контейнер виджета на дашбордовской странице пользует контекст **dashboard**.
 
-<a name="navigation-permissions" class="anchor" href="#navigation-permissions"></a>
-## Навигация и ограничения
+## <a name="navigation-permissions" class="anchor" href="#navigation-permissions"></a> Навигация и ограничения
 
 Плагины могут расширить в бек-энде навигационные менюшки и ограничения путем переопределения методов [Класс регистрации плагина](#registration-file). В этом разделе показано, как добавить пункты меню и разрешения на области навигации в бек энде. Пример регистрации верхнего уровня навигации менюхи, с двумя пунктами подменю:
 
@@ -253,8 +243,7 @@
         ];
     }
 
-<a name="backend-settings" class="anchor" href="#backend-settings"></a>
-## Настройки бек энда
+## <a name="backend-settings" class="anchor" href="#backend-settings"></a> Настройки бек энда
 
 Страница Система / Настройки содержит список всех параметров для конфигурирования страниц. Список этих параметров может быть увеличен настройками плагинов, путем переопределения метода `registerSettings()` в [Классе регистрации плагина](#registration-file). Когда Вы создаете конфигурационный линк, перед Вами стоит два варианта - создать линк на специфичную страницу бек энда, или же создать линк с настройками модели. Следующий пример показывает, как создать линк на страницу бек энда.
 
@@ -288,8 +277,7 @@
         ];
     }
 
-<a name="migrations-version-history" class="anchor" href="#migrations-version-history"></a>
-## Миграции и история версий
+## <a name="migrations-version-history" class="anchor" href="#migrations-version-history"></a> Миграции и история версий
 
 Плагины хранят историю изменений в папке **/updates**. Также в этой директории хранится информация о текущей версии и информацию о структуре базы данных. Например, структура директории обновления может выглядить так:
 
