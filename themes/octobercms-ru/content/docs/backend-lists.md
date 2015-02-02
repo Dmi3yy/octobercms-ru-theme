@@ -1,8 +1,8 @@
 # Backend lists
 
-- [Configuring the list behavior](#configuring-list)
-- [List columns](#list-columns)
-- [Displaying the list](#displaying-list)
+- [# Configuring the list behavior](#configuring-list)
+- [# List columns](#list-columns)
+- [# Displaying the list](#displaying-list)
 
 `List behavior` is a controller modifier used for easily adding a record list to a page. The behavior provides the sortable and searchable list with optional links on its records. 
 
@@ -19,8 +19,7 @@ List behavior depends on form [column definitions](#form-fields) and a [model cl
 
 > **Note:** Very often the list and [form behavior](form) are used together in a same controller.
 
-<a name="configuring-list" class="anchor" href="#configuring-list"></a>
-## Configuring the list behavior
+## <a name="configuring-list" class="anchor" href="#configuring-list"></a> Configuring the list behavior
 
 The configuration file referred in the `$listConfig` property is defined in YAML format. The file should be placed into the controller's [views directory](controllers-views-ajax/#introduction). Below is an example of a typical list behavior configuration file:
 
@@ -52,8 +51,7 @@ The configuration options listed below are optional.
 * **showTree** - displays a tree hierarchy for parent/child records. Default: false.
 * **treeExpanded** - if tree nodes should be expanded by default. Default: true.
 
-<a name="adding-toolbar" class="anchor" href="#adding-toolbar"></a>
-### Adding a toolbar
+### <a name="adding-toolbar" class="anchor" href="#adding-toolbar"></a> Adding a toolbar
 
 To include a toolbar with the list add the following configuration to the list configuration YAML file:
 
@@ -79,8 +77,7 @@ The toolbar buttons partial referred above should contain the toolbar control de
             class="btn btn-primary oc-icon-plus">New Post</a>
     </div>
 
-<a name="list-columns" class="anchor" href="#list-columns"></a>
-## List columns
+## <a name="list-columns" class="anchor" href="#list-columns"></a> List columns
 
 List columns are defined with the YAML file. The column configuration is used by the list behavior for creating the record table and displaying model columns in the table cells. The file is placed to a subdirectory of the **models** directory of a plugin. The subdirectory name matches the model class name written in lowercase. The file name doesn't matter, but the **columns.yaml** and **list_columns.yaml** are common names. Example list columns file location: 
 
@@ -103,8 +100,7 @@ The next example shows a typical contents of the list column definitions file.
         name: Name
         email: Email
 
-<a name="column-options" class="anchor" href="#column-options"></a>
-### Column options
+### <a name="column-options" class="anchor" href="#column-options"></a> Column options
 
 For each column can specify these options (where applicable):
 
@@ -117,8 +113,7 @@ For each column can specify these options (where applicable):
 * **select** - defines a custom SQL select statement.
 * **relation** - defines a relationship column.
 
-<a name="column-types" class="anchor" href="#column-types"></a>
-### Column Types
+### <a name="column-types" class="anchor" href="#column-types"></a> Column Types
 
 `text` - displays a text column, aligned left
 
@@ -182,8 +177,7 @@ You can also specify a custom date format, for example **Thursday 25th of Decemb
         relation: groups
         select: @name
 
-<a name="displaying-list" class="anchor" href="#displaying-list"></a>
-## Displaying the list
+## <a name="displaying-list" class="anchor" href="#displaying-list"></a> Displaying the list
 
 Usually lists are displayed in the index [view](controllers-views-ajax/#introduction). As lists include the toolbar, a view can consist from the single `listRender()` method call:
 
