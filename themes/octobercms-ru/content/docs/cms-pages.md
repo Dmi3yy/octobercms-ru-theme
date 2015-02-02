@@ -1,3 +1,4 @@
+# Страницы ( Pages )
 
 - [# Page configuration](#configuration)
 - [# Dynamic pages](#dynamic-pages)
