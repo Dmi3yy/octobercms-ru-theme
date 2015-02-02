@@ -1,6 +1,7 @@
-# Sending email messages
+# Отправка электонной почты
 
-October extends the [Laravel's Mail system](http://laravel.com/docs/mail) with Twig support. The programming interface is the same:
+Расширение October [Laravel's Mail system](http://laravel.com/docs/mail) с поддержкой Twig. 
+Программный интерфейс:
 
     Mail::send('october.server::emails.message', $data, function($message) use ($product)
     {
