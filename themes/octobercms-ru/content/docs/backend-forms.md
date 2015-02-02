@@ -1,8 +1,8 @@
 # Backend forms
 
-- [Configuring the form behavior](#configuring-form)
-- [Form fields](#form-fields)
-- [Form views](#form-views)
+- [# Configuring the form behavior](#configuring-form)
+- [# Form fields](#form-fields)
+- [# Form views](#form-views)
 
 **Form behavior** is a controller modifier used for easily adding form functionality to a back-end page. The behavior provides three pages Create, Update and Preview. The preview page is a read-only version of the update page. When you use the form behavior you don't need to define the `create()`, `update()` and `preview()` actions in the controller - the behavior does it for you. However you should provide the corresponding view files.
 
@@ -19,8 +19,7 @@ Form behavior depends on form [field definitions](#form-fields) and a [model cla
 
 > **Note:** Very often the form and [list behavior](lists) are used together in a same controller.
 
-<a name="configuring-form" class="anchor" href="#configuring-form"></a>
-## Configuring the form behavior
+## <a name="configuring-form" class="anchor" href="#configuring-form"></a> Configuring the form behavior
 
 The configuration file referred in the `$formConfig` property is defined in YAML format. The file should be placed into the controller's [views directory](controllers-views-ajax/#introduction). Below is an example of a typical form behavior configuration file:
 
@@ -54,8 +53,7 @@ The configuration options listed below are optional. Define them if you want the
 * **update** - a configuration for the Update page.
 * **preview** - a configuration for the Preview page.
 
-<a name="form-create-page" class="anchor" href="#form-create-page"></a>
-### Create page
+### <a name="form-create-page" class="anchor" href="#form-create-page"></a> Create page
 
 To support the Create page add the following configuration to the YAML file:
 
@@ -72,8 +70,7 @@ The following configuration options are supported for the Create page:
 * **redirectClose** - redirection page when record is saved and the **close** post variable is sent with the request.
 * **flash-save** - flash message to display when record is saved, can refer to a [localization string](../plugin/localization).
 
-<a name="form-update-page" class="anchor" href="#form-update-page"></a>
-### Update page
+### <a name="form-update-page" class="anchor" href="#form-update-page"></a> Update page
 
 To support the Update page add the following configuration to the YAML file:
 
@@ -91,8 +88,7 @@ The following configuration options are supported for the Update page:
 * **flash-save** - flash message to display when record is saved, can refer to a [localization string](../plugin/localization).
 * **flash-delete** - flash message to display when record is deleted, can refer to a [localization string](../plugin/localization).
 
-<a name="form-preview-page" class="anchor" href="#form-preview-page"></a>
-### Preview page
+### <a name="form-preview-page" class="anchor" href="#form-preview-page"></a> Preview page
 
 To support the Preview page add the following configuration to the YAML file:
 
@@ -103,8 +99,7 @@ The following configuration options are supported for the Preview page:
 
 * **title** - a page title, can refer to a [localization string](Localization).
 
-<a name="form-fields" class="anchor" href="#form-fields"></a>
-## Form fields
+## <a name="form-fields" class="anchor" href="#form-fields"></a> Form fields
 
 Form fields are defined with the YAML file. The form fields configuration is used by the form behavior for creating the form controls and binding them to the model fields. The file is placed to a subdirectory of the **models** directory of a plugin. The subdirectory name matches the model class name written in lowercase. The file name doesn't matter, but the **fields.yaml** and **form_fields.yaml** are common names. Example form fields file location: 
 
@@ -143,8 +138,7 @@ Fields can be placed in three areas, the **outside area**, **primary tabs** or *
       fields:
         [...]
 
-<a name="form-field-options" class="anchor" href="#form-field-options"></a>
-### Field options
+### <a name="form-field-options" class="anchor" href="#form-field-options"></a> Field options
 
 For each field you can specify these options (where applicable):
 
@@ -161,8 +155,7 @@ For each field you can specify these options (where applicable):
 * **disabled** - grays out the field if set to true. Options: true, false.
 * **stretch** - specifies if this field stretch to fit the parent height.
 
-<a name="form-field-types" class="anchor" href="#form-field-types"></a>
-### Field Types
+### <a name="form-field-types" class="anchor" href="#form-field-types"></a> Field Types
 
 `text` - renders a single line text box. This is the default type used if none is specified.
 
@@ -236,15 +229,13 @@ Radio lists support three ways of defining the options, exactly like the drop-do
       size: huge
       options: [...]
 
-<a name="form-views" class="anchor" href="#form-views"></a>
-## Form views
+## <a name="form-views" class="anchor" href="#form-views"></a> Form views
 
 For each page your form supports -[Create](#form-create-page), [Update](#form-update-page) and [Preview](#form-preview-page) you should provide a [view file](#introduction) with the corresponding name - **create.htm**, **update.htm** and **preview.htm**.
 
 The form behavior adds two methods to the controller class: `formRender()` and `formRenderPreview()`. These methods render the form controls configured with the YAML file described above.
 
-<a name="form-create-view" class="anchor" href="#form-create-view"></a>
-### Create view
+### <a name="form-create-view" class="anchor" href="#form-create-view"></a> Create view
 
 The **create.htm** view represents the Create page that allows users to create new records. A typical Create page contains breadcrumbs, the form itself, and the form buttons. The **data-request** attribute should refer to the `onSave` AJAX handler provided by the form behavior. Below is a contents of the typical create.htm form.
 
@@ -278,8 +269,7 @@ The **create.htm** view represents the Create page that allows users to create n
 
     <?= Form::close() ?>
 
-<a name="form-update-view" class="anchor" href="#form-update-view"></a>
-### Update view
+### <a name="form-update-view" class="anchor" href="#form-update-view"></a> Update view
 
 The **update.htm** view represents the Update page that allows users to update or delete existing records. A typical Update page contains breadcrumbs, the form itself, and the form buttons. The Update page is very similar to the Create page, but usually has the Delete button. The **data-request** attribute should refer to the `onSave` AJAX handler provided by the form behavior. Below is a contents of the typical update.htm form.
 
@@ -320,8 +310,7 @@ The **update.htm** view represents the Update page that allows users to update o
         </div>
     <?= Form::close() ?>
 
-<a name="form-preview-view" class="anchor" href="#form-preview-view"></a>
-### Preview view
+### <a name="form-preview-view" class="anchor" href="#form-preview-view"></a> Preview view
 
 The **preview.htm** view represents the Preview page that allows users to preview existing records in the read-only mode. A typical Preview page contains breadcrumbs and the form itself. Below is a contents of the typical preview.htm form.
 
