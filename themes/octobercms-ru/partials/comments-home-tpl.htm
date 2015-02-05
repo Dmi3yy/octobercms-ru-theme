@@ -1,0 +1,28 @@
+==
+<?php
+function onStart() {
+ 
+    $this['forumLastTopics'] = DB::table('rainlab_forum_topics')
+                ->orderBy('created_at', 'DESC')
+                //->whereNull('embed_code')
+                ->limit('10')
+                ->get();
+                
+}
+?>
+==
+<div class="recent-tweets {{ class }}">
+    <h4 class="headline"><span>Форум :: последние комментарии </span></h4>
+    {% for topic in forumLastTopics %}
+
+         <div class="tweet">
+                <a href="/forum/topic/{{ topic.slug }}">{{ topic.subject }}</a>  
+                <small class="info"><br>
+                {# <span class="text-muted">{{ topic.created_at.diffForHumans }}</span> :: #}
+                <span class="text-muted"><i class="fa fa-eye icon-eye-open"></i> {{ topic.topic_id }}</span> ::
+                <span class="text-muted"><i class="fa fa-comments-o icon-comments-o"></i> {{ topic.member_id }}</span>
+                </small>
+        </div>
+         <div class="content">{{ content_html|raw }}</div>
+    {% endfor %}
+</div>
