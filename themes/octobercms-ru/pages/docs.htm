@@ -47,7 +47,7 @@ function onStart() {
         "help-console.md" => "Консольный интерфейс",
         "help-developer-guide.md" => "Руководство разработчика",
 
-        "backend-controllers-views-ajax.md" => "Контроллеры, представления и AJAX",
+        "backend-controllers-views-ajax.md" => "Контроллеры, Виды и AJAX",
         "backend-forms.md" => "Формы",
         "backend-lists.md" => "Списки",
         "backend-relations.md" => "Связи",
@@ -68,8 +68,13 @@ function onStart() {
     $this['documents'] = $documents;
     $this['sections'] = $sections;
     $this['docs'] = $docs;
+    //$this->page->title = $documents[$this->param->docslug];
+    
     $this->page->desc = 'Собрание всего, что поспособствует изучению OctoberCMS';
     
+}
+function onRun(){
+    print_r($this->params);
 }
 ?>
 ==
