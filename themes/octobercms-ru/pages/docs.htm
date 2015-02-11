@@ -94,7 +94,7 @@ function onRun(){
         <div class="col-sm-9 docs">
           {#  <h1>{{ documents[this.param.docslug|default('cms-themes.md')] }}</h1> #}
             {% content ['docs', this.param.docslug|default('cms-themes.md')]|join('/') %}
-            <div class="link-edit"><a href="https://github.com/OctoberCMSru/docs/edit/master/{{ this.param.docslug }}"><span class="fui-new"></span></a></div>
+            <div class="link-edit"><a href="https://github.com/OctoberCMSru/docs/edit/master/{{ this.param.docslug|default('cms-themes.md') }}"><span class="fui-new"></span></a></div>
         </div>
     </div>
 </div>
