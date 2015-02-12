@@ -1,12 +1,13 @@
-# Backend forms
+# Формы административной части
 
-- [# Configuring the form behavior](#configuring-form)
-- [# Form fields](#form-fields)
-- [# Form views](#form-views)
+- [# Настройка поведения формы](#configuring-form)
+- [# Поля форм](#form-fields)
+- [# Виджеты формы](#form-widgets)
+- [# Виды форм](#form-views)
 
-**Form behavior** is a controller modifier used for easily adding form functionality to a back-end page. The behavior provides three pages Create, Update and Preview. The preview page is a read-only version of the update page. When you use the form behavior you don't need to define the `create()`, `update()` and `preview()` actions in the controller - the behavior does it for you. However you should provide the corresponding view files.
+**Поведение формы** настраивается контроллером для простого добавления функциональных форм на страницу в административной панели. Этот механизм обеспечивает поддержку трёх страниц: Создания, Обновления и Предосмотра. Страница предосмотра предназначена только для чтения версии страницы Обновления. При использовании такого подхода нет необходимости в поиске действий `create()`, `update()` и `preview()` в контроллерах - в нём вообще ничего не нужно менять. Всё что требуется, это предоставить соответствующий вид файлам.
 
-Form behavior depends on form [field definitions](#form-fields) and a [model class](../database/model). In order to use the form behavior you should add it to the `$implement` field of the controller class. Also, the `$formConfig` class property should be defined and its value should refer to the YAML file used for configuring the behavior options.
+Поведение формы зависит от [определённых полей](#form-fields) и [модели класса](database-model.md). Для того, чтобы использовать поведение формы, необходимо добавить его в поле `$implement` класса контроллера. Кроме того, свойства класса `$formConfig` и его значение должно указывать на файл YAML, используемого ддя настройки парметров поведения.
 
     namespace Acme\Blog\Controllers;
 
@@ -17,115 +18,125 @@ Form behavior depends on form [field definitions](#form-fields) and a [model cla
 
         public $formConfig = 'form_config.yaml';
 
-> **Note:** Very often the form and [list behavior](lists) are used together in a same controller.
+> **На заметку:** Часто поведение форм и [списков](backend-lists.md) используются вместе и имеют один и тот же контроллер.
 
-## <a name="configuring-form" class="anchor" href="#configuring-form"></a> Configuring the form behavior
+## <a name="configuring-form" class="anchor" href="#configuring-form"></a> Настройка поведения формы
 
-The configuration file referred in the `$formConfig` property is defined in YAML format. The file should be placed into the controller's [views directory](controllers-views-ajax/#introduction). Below is an example of a typical form behavior configuration file:
+Файл ностроек указывается в параметре `$formConfig` в формате YAML. Этот файл должен быть расположен в контроллерах [директории видов](backend-controllers-views-ajax.md/#introduction). Пример типичной настройки файла:
 
     # ===================================
-    #  Form Behavior Config
+    #  Настройки поведения формы
     # ===================================
 
-    name: Blog Category
+    name: Категория блога
     form: @/plugins/acme/blog/models/post/fields.yaml
     modelClass: Acme\Blog\Post
 
     create:
-        title: New Blog Post
+        title: Новый пост блога
 
     update:
-        title: Edit Blog Post
+        title: Редактировать пост блога
 
     preview:
-        title: View Blog Post
+        title: Предосмотр поста блога
 
-The following fields are required in the form configuration file:
+Следующие поля обязательны для формы файла настроек:
 
-* **name** - a name for the object being managed by this form.
-* **form** - a reference to form field definition file, see [form fields](#form-fields).
-* **modelClass** - a model class name to load and save the form data.
+Параметр | Описание
+------------- | -------------
+**name** | название для объекта управляемый этой формой.
+**form** | ссылка на файл определения [полей формы](#form-fields).
+**modelClass** | название модели класса для загрузки и сохранения данных формы.
 
-The configuration options listed below are optional. Define them if you want the form behavior to support the [Create](#form-create-page), [Update](#form-update-page) or [Preview](#form-preview-page) pages.
+Список параметров ниже не является обязательным, определять их следует лишь для поддержки [Создания](#form-create-page), [Обновления](#form-update-page) или [Предосмотра](#form-preview-page) страниц.
 
-* **defaultRedirect** - redirection page to use when none is defined.
-* **create** - a configuration for the Create page.
-* **update** - a configuration for the Update page.
-* **preview** - a configuration for the Preview page.
+Параметр | Описание
+------------- | -------------
+**defaultRedirect** | перенаправление страницы если ничего нет.
+**create** | настройки для Создания страницы.
+**update** | настройки для Обновления страницы.
+**preview** | настройки для Предосмотра страницы.
 
-### <a name="form-create-page" class="anchor" href="#form-create-page"></a> Create page
+### <a name="form-create-page" class="anchor" href="#form-create-page"></a> Создание страницы
 
-To support the Create page add the following configuration to the YAML file:
+Для поддержки Создания страницы нужно добавить в файл YAML:
 
     create:
-        title: New Blog Post
+        title: Новый пост блога
         redirect: acme/blog/posts/update/:id
         redirectClose: acme/blog/posts
-        flash-save: Post has been created!
+        flash-save: Пост успешно создан!
 
-The following configuration options are supported for the Create page:
+Страницей Создания поддерживаются следующие параметры настройки:
 
-* **title** - a page title, can refer to a [localization string](../plugin/localization).
-* **redirect** - redirection page when record is saved.
-* **redirectClose** - redirection page when record is saved and the **close** post variable is sent with the request.
-* **flash-save** - flash message to display when record is saved, can refer to a [localization string](../plugin/localization).
+Параметр | Описание
+------------- | -------------
+**title** | название страницы, может относиться к [строке локализации](plugin-localization.md).
+**redirect** | перенаправление страницы после сохранения записи.
+**redirectClose** | перенеправление страницы после сохранения записи и когда переменная поста **close** отправляется с запросом.
+**flash-save** | мгновенное сообщение, отображаемое когда произошло сохранение записи, может относиться к [строке локализации](plugin-localization.md).
 
-### <a name="form-update-page" class="anchor" href="#form-update-page"></a> Update page
+### <a name="form-update-page" class="anchor" href="#form-update-page"></a> Обновление страницы
 
-To support the Update page add the following configuration to the YAML file:
+Для поддержки Обновления страницы нужно добавить в файл YAML:
 
     update:
-        title: Edit Blog Post
+        title: Обновление поста блога
         redirect: acme/blog/posts
-        flash-save: Post updated successfully!
-        flash-delete: Post has been deleted.
+        flash-save: Посты успешно обновлён!
+        flash-delete: Пост был удалён.
 
-The following configuration options are supported for the Update page:
+Страницей Обновления поддерживаются следующие параметры настройки:
 
-* **title** - a page title, can refer to a [localization string](../plugin/localization).
-* **redirect** - redirection page when record is saved.
-* **redirectClose** - redirection page when record is saved and **close** post variable is sent with the request.
-* **flash-save** - flash message to display when record is saved, can refer to a [localization string](../plugin/localization).
-* **flash-delete** - flash message to display when record is deleted, can refer to a [localization string](../plugin/localization).
+Параметр | Описание
+------------- | -------------
+**title** | название страницы, может относиться к [строке локализации](plugin-localization.md).
+**redirect** | перенаправление страницы после сохранения записи.
+**redirectClose** | перенеправление страницы после сохранения записи и когда переменная поста **close** отправляется с запросом.
+**flash-save** | мгновенное сообщение, отображаемое когда произошло сохранение записи, может относиться к [строке локализации](plugin-localization.md).
+**flash-delete** | мгновенное сообщение, отображаемое когда произошло удаление записи, может относиться к [строке локализации](plugin-localization.md).
 
-### <a name="form-preview-page" class="anchor" href="#form-preview-page"></a> Preview page
+### <a name="form-preview-page" class="anchor" href="#form-preview-page"></a> Предосмотр страницы
 
-To support the Preview page add the following configuration to the YAML file:
+Для поддержки Предосмотра страницы нужно добавить в файл YAML:
 
     preview:
-        title: View Blog Post
+        title: Предосмотр поста блога
 
-The following configuration options are supported for the Preview page:
+Страницей Предосмотра поддерживаются следующие параметры настройки:
 
-* **title** - a page title, can refer to a [localization string](Localization).
+Параметр | Описание
+------------- | -------------
+**title** | название страницы, может относиться к [строке локализации](plugin-localization.md).
 
-## <a name="form-fields" class="anchor" href="#form-fields"></a> Form fields
+## <a name="form-fields" class="anchor" href="#form-fields"></a> Поля формы
 
-Form fields are defined with the YAML file. The form fields configuration is used by the form behavior for creating the form controls and binding them to the model fields. The file is placed to a subdirectory of the **models** directory of a plugin. The subdirectory name matches the model class name written in lowercase. The file name doesn't matter, but the **fields.yaml** and **form_fields.yaml** are common names. Example form fields file location: 
+Поля формы определяются с помощью файла YAML. Натройка полей формы используется поведением формы для создания элементов управления формы и привязки их к модели полей. Этот файл распологается в подкаталоге папки **моделей** плагина. Название подкаталога совпадает с именем класса модели и пишется строчными буквами. Имя фала не имеет значения, но **fields.yaml** и **form_fields.yaml** даёт возможность понять к чему этот файл имеет отношение. Пример расположения файла полей формы: 
 
     plugins/
       acme/
         blog/
-          models/                <=== Plugin models directory
-            post/                <=== Model configuration directory
-              form_fields.yaml   <=== Model form fields config file
-            Post.php             <=== model class
+          models/                <=== Каталог моделей плагина
+            post/                <=== Каталог настроек модели
+              form_fields.yaml   <=== Файл настроек полей формы модели
+            Post.php             <=== Класс модели
 
 
-Fields can be placed in three areas, the **outside area**, **primary tabs** or **secondary tabs**. The next example shows a typical contents of the form fields definition file.
+Поля могут быть размещены в трёх областях, **вне области**, **главной области** или **второстепенной области**. Следующий пример показывает типичное содержание файла определения полей формы.
 
     # ===================================
-    #  Form Field Definitions
+    #  Определение полей формы
     # ===================================
 
     fields:
       blog_title:
-        label: Blog Title
-        description: The title for this blog
+        label: Название блога
+        description: название данного блога
 
       published_at:
-        label: Published date
-        description: When this blog post was published
+        label: Дата публикации
+        description: когда это сообщение в блоге было опубликовано
         type: datetime
 
       [...]
@@ -138,110 +149,220 @@ Fields can be placed in three areas, the **outside area**, **primary tabs** or *
       fields:
         [...]
 
-### <a name="form-field-options" class="anchor" href="#form-field-options"></a> Field options
+### <a name="form-field-options" class="anchor" href="#form-field-options"></a> Параметры полей
 
-For each field you can specify these options (where applicable):
+Для каждого поля можно указать эти параметры (если применимо):
 
-* **label** - a name when displaying the form field to the user.
-* **type** - defines how this field should be rendered (see Fields types below). Default: text.
-* **span** - aligns the form field to one side. Options: auto, left, right, full. Default: auto.
-* **size** - specifies a field size for fields that use it (for example the text area). Options: tiny, small, large, huge, giant.
-* **placeholder** - if the field supports a placeholder value.
-* **comment** - places a descriptive comment below the field.
-* **commentAbove** - places a comment above the field.
-* **default** - specifies the default value for the field.
-* **tab** - assigns the field to a tab.
-* **cssClass** - assigns a CSS class to the field container.
-* **disabled** - grays out the field if set to true. Options: true, false.
-* **stretch** - specifies if this field stretch to fit the parent height.
+Параметр | Описание
+------------- | -------------
+**label** | отображаемое название поля формы для пользователя.
+**type** | определяет какой тип поля использовать (о типах полей ниже). По умолчанию: text.
+**span** | по какой стороне выравнивать поле. Параметры: auto, left, right, full. По умолчанию: auto.
+**size** | размер поля, в котором он указывается (например text area). Параметры: tiny, small, large, huge, giant.
+**placeholder** | если поле поддерживает значение плейсхолдера.
+**comment** | размещает текст описания ниже поля.
+**commentAbove** | размещает текст описания выше поля.
+**default** | определяет значение по умолчанию для поля.
+**tab** | размещает поле во- вкладке.
+**cssClass** | указывает CSS класс контейнеру поля.
+**disabled** | затемняет поле, если установлено значение true. Параметры: true, false.
+**stretch** | указывает, может ли поле растягиваться по высоте родительского элемента.
 
-### <a name="form-field-types" class="anchor" href="#form-field-types"></a> Field Types
+### <a name="form-field-types" class="anchor" href="#form-field-types"></a> Типы полей
 
-`text` - renders a single line text box. This is the default type used if none is specified.
+`text` - выводит текстовый блок в одну линию. Этот тип указывается по умолчанию, если тип не указан.
 
     blog_title:
-      label: Blog Title
+      label: Название блога
       type: text
 
-`password ` - renders a single line password field.
+`password ` - выводит поле для ввода пароля в одну линию.
 
     user_password:
-      label: Password
+      label: Пароль
       type: password
 
-`textarea` - renders a multiline text box. A size can also be specified with possible values: tiny, small, large, huge, giant.
+`textarea` - выводит текстовую область в несколько строк. Поддерживает несколько параметров указывающих его размер: tiny, small, large, huge, giant.
 
     blog_contents:
-      label: Contents
+      label: Содержание
       type: textarea
       size: large
 
-`dropdown` - renders a dropdown with specified options. There are 3 ways to provide the drop-down options. The first method defines options directly in the YAML file:
+`dropdown` - выводит меню выбора с указанными параметрами. Есть 3 способа указать параметры для выбора. В первом варианте параметры определяются наместе, то есть в файле YAML:
 
     status:
-      label: Blog Post Status
+      label: Статус поста блога
       type: dropdown
       options:
-        draft: Draft
-        published: Published
-        archived: Archived
+        draft: В проекте
+        published: Опубликован
+        archived: В архиве
 
-The second method defines options with a method declared in the model's class. If the options element is omitted, the framework expects a method with the name `get*Field*Options()` to be defined in the model. Using the example above, the model should have the ``getStatusOptions()`` method. This method should return an array of options in the format **key => label**.
+Второй способ указывает параметры с методом, обвявленным в одном из классов моделей. Если параметры не указаны, фреймворк ожидает метод с именем `get*Field*Options()` который должен быть определён в модели. Чтобы определить параметры как в примере выше, модель должна иметь метод ``getStatusOptions()``. Данный метод должен содержать массив параметров в формате **key => label**.
 
     status:
-      label: Blog Post Status
+      label: Статус поста блога
       type: dropdown
 
 
-The third method uses a specific method declared in the model's class. In the next example the `listStatuses()` method should be defined in the model class.
+В третьем способе используется специальный метод, объявленный в одном из классов моделей. В следующем примере, метод `listStatuses()` должен быть определён в модели класса.
 
     status:
-      label: Blog Post Status
+      label: Статус поста блога
       type: dropdown
       options: listStatuses
 
-`radio` - renders a list of radio options, where only one item can be selected at a time.
+`radio` - выводит список радио параметров, в котором выбрать можно лишь один параметр из всех.
 
     security_level:
-      label: Access Level
+      label: Уровень доступа
       type: radio
       options:
-        all: All
-        registered: Registered only
-        guests: Guests only
+        all: Полный
+        registered: Только для зарегистрированных
+        guests: Только для гостей
 
-Radio lists can also support a secondary description.
+Радио списки поддерживают описание параметров выбора.
 
     security_level:
-      label: Access Level
+      label: Уровень доступа
       type: radio
       options:
-        all: [All, Guests and customers will be able to access this page.]
-        registered: [Registered only, Only logged in member will be able to access this page.]
-        guests: [Guests only, Only guest users will be able to access this page.]
+        all: [Полный, Гости и клиенты будут иметь доступ к данной странице.]
+        registered: [Только для зарегистрированных, Только авторизованные посетители смогут увидеть данную страницу.]
+        guests: [Только для гостей, Просмотреть данную страницу смогут только неавторизованные пользователи.]
 
-Radio lists support three ways of defining the options, exactly like the drop-down lists. For radio lists the method could return either the simple array: **key => value** or an array of arrays for providing the descriptions: **key => [label, description]**
+Радио списки поддерживают 3 метода определения параметов, так же как и в меню выбора (dropdown). Для радио списков метод может содержать как простой массив: **key => value** так и массив с описанием параметров: **key => [Название, Описание]**
 
-`widget` - the `type` field can refer directly to the class name of the widget. You can read more on the [Form Widgets](widgets) article.
+`widget` - этот `тип` полей может обращаться к имени класса виджета. Больше об этом можно узнать на странице докементации [Виджеты форм](backend-widgets.md).
 
     blog_content:
       type: Backend\FormWidgets\RichEditor
       size: huge
       options: [...]
 
-## <a name="form-views" class="anchor" href="#form-views"></a> Form views
 
-For each page your form supports -[Create](#form-create-page), [Update](#form-update-page) and [Preview](#form-preview-page) you should provide a [view file](#introduction) with the corresponding name - **create.htm**, **update.htm** and **preview.htm**.
+## <a name="form-widgets" class="anchor" href="#form-widgets"></a> Form widgets
 
-The form behavior adds two methods to the controller class: `formRender()` and `formRenderPreview()`. These methods render the form controls configured with the YAML file described above.
+There are various form widgets included as standard, although it is common for plugins to provide their own custom form widgets. You can read more on the [Form Widgets](widgets) article.
 
-### <a name="form-create-view" class="anchor" href="#form-create-view"></a> Create view
+- [# Визуальный редактор / WYSIWYG](#widget-richeditor)
+- [# Редактор кода](#widget-codeeditor)
+- [# Файловый загрузчик](#widget-fileupload)
+- [# Выбор даты](#widget-datepicker)
+- [# Отношение](#widget-relation)
+- [# Поиск записей](#widget-recordfinder)
 
-The **create.htm** view represents the Create page that allows users to create new records. A typical Create page contains breadcrumbs, the form itself, and the form buttons. The **data-request** attribute should refer to the `onSave` AJAX handler provided by the form behavior. Below is a contents of the typical create.htm form.
+
+### <a name="widget-richeditor" class="anchor" href="#widget-richeditor"></a> Визуальный редактор / WYSIWYG
+
+`richeditor` - выводит визуальный текстовый редактор для насыщенного форматирования текста, известного так же как WYSIWYG редактор.
+
+    html_content:
+      type: richeditor
+      size: huge
+
+
+### <a name="widget-codeeditor" class="anchor" href="#widget-codeeditor"></a> Редактор кода
+
+`codeeditor` - выводит простой текстовый редактор для форматирования или разметки кода. Параметры могут быть унаследованы из настроек редактора в административной части для Администратора.
+
+    css_content:
+      type: codeeditor
+      size: huge
+      language: html
+
+Параметр  | Описание
+------------- | -------------
+**language** | язык программирования, для примера: php, css, js, html. По умолчанию: php.
+**showGutter** | отображать номера строк. По умолчанию: true.
+**wrapWords** | умещать длинные строки в область редактора, без горизонтальной прокрутки. По умолчанию: true.
+**fontSize** | размер шрифта. По умолчанию: 12.
+
+
+### <a name="widget-fileupload" class="anchor" href="#widget-fileupload"></a> Файловый загрузчик
+
+`fileupload` - выводит файловый загрузчик для изображений или обычных файлов. Название поля необходимо использовать относительно attachOne или attachMany.
+
+    avatar:
+      label: Аватар
+      type: fileupload
+      mode: image
+      imageHeight: 260
+      imageWidth: 260
+
+Параметр  | Описание
+------------- | -------------
+**mode** | возможность работаться в двух режимах: file и image. По умолчанию: file.
+**imageWidth** | если используется режим работы с изображениями то изображение изменится до заданного размера, по ширине.
+**imageWidth** | если используется режим работы с изображениями то изображение изменится до заданного размера, по высоте.
+**fileTypes** | расширения файлов, которые будут поддерживаться для загрузки, необязательный параметр. Например: zip,txt
+
+
+### <a name="widget-datepicker" class="anchor" href="#widget-datepicker"></a> Выбор даты
+
+`datepicker` - выводит текстовую область для выбора даты и времяни.
+
+    published_at:
+        label: Опубликован
+        type: datepicker
+        mode: date
+
+Параметр  | Описание
+------------- | -------------
+**mode** | ожидаемое значение, такое как date, datetime или time. По умолчанию: datetime.
+
+
+### <a name="widget-relation" class="anchor" href="#widget-relation"></a> Отношение
+
+`relation` - выводит выпадающий список (dropdown) или список флажков (checkbox), в зависимости от типа поля, с которым происходит связь. Особые отношения отображают выпадающий список, множественные отношения отображают список флажков для множественного выбора.
+
+    categories:
+        label: Categories
+        type: relation
+        nameFrom: title
+
+Option  | Description
+------------- | -------------
+**nameFrom** | the column name to use in the relation used for displaying the name. Default: name.
+**descriptionFrom** | the column name to use in the relation used for displaying a description (optional). Default: description.
+**emptyOption** | text to display when there is no available selections.
+
+
+### <a name="widget-recordfinder" class="anchor" href="#widget-recordfinder"></a> Record finder
+
+`recordfinder` - renders a field with details of a related record. Expanding the field displays a popup list to search large amounts of records. Supported by singular relationaships only.
+
+    user:
+        label: User
+        type: recordfinder
+        list: ~/plugins/rainlab/user/models/user/columns.yaml
+        prompt: Click the %s button to find a user
+        nameFrom: name
+        descriptionFrom: email
+
+Option  | Description
+------------- | -------------
+**nameFrom** | the column name to use in the relation used for displaying the name. Default: name.
+**descriptionFrom** | the column name to use in the relation used for displaying a description. Default: description.
+**prompt** | text to display when there is no record selected. The `%s` character represents the search icon.
+**list** | a configuration array or reference to a list column definition file, see [list columns](lists#list-columns).
+
+
+## <a name="form-views" class="anchor" href="#form-views"></a> Виды форм
+
+Для каждой страницы поддерживаемых форм - [Создания](#form-create-page), [Обновления](#form-update-page) и [Предосмотра](#form-preview-page) должен быть создан [файл вида](#introduction) с соответствующим именем - **create.htm**, **update.htm** и **preview.htm**.
+
+Это поведение формы добавляет два новых класса к контроллеру: `formRender()` и `formRenderPreview()`. Эти методы выводят элементы управления формы, настроенные с помощью файла YAML, описанного выше.
+
+### <a name="form-create-view" class="anchor" href="#form-create-view"></a> Вид Создания
+
+Вид **create.htm** представляет собой страницу Создания, которая позволяет пользователям создавать новые записи. В основном, страница Создания содержит меню навигации (breadcrumbs), саму форму и кнопки. Атрибут **data-request** вызывает `onSave` AJAX обработчик, поддерживаемый поведением формы. Ниже приводится пример типичного содержания формы create.htm.
 
     <div class="control-breadcrumb">
         <ul>
-            <li><a href="<?= Backend::url('acme/blog/categories') ?>">Blog Categories</a></li>
+            <li><a href="<?= Backend::url('acme/blog/categories') ?>">Категории блога</a></li>
             <li><?= e($this->pageTitle) ?></li>
         </ul>
     </div>
@@ -258,24 +379,24 @@ The **create.htm** view represents the Create page that allows users to create n
                     data-request-data="close:true" 
                     data-hotkey="ctrl+enter"
                     data-hotkey-mac="cmd+enter"
-                    data-load-indicator="Creating Category..." 
+                    data-load-indicator="Создание категории..." 
                     class="btn btn-default">
-                    Create and Close
+                    Создать и выйти
                 </button>
-                <span class="btn-text"> or 
-                <a href="<?= Backend::url('acme/blog/categories') ?>">Cancel</a></span>
+                <span class="btn-text"> или 
+                <a href="<?= Backend::url('acme/blog/categories') ?>">Отменить</a></span>
             </div>
         </div>
 
     <?= Form::close() ?>
 
-### <a name="form-update-view" class="anchor" href="#form-update-view"></a> Update view
+### <a name="form-update-view" class="anchor" href="#form-update-view"></a> Вид Обновления
 
-The **update.htm** view represents the Update page that allows users to update or delete existing records. A typical Update page contains breadcrumbs, the form itself, and the form buttons. The Update page is very similar to the Create page, but usually has the Delete button. The **data-request** attribute should refer to the `onSave` AJAX handler provided by the form behavior. Below is a contents of the typical update.htm form.
+Вид **update.htm** представляет собой страницу Обновления, которая позволяет пользователям обновлять или удалять существующие записи. Стандартная страница Обновления содержит меню навигации, форму и кнопки. Страница Обновления похожа на страницу Создания, но, как правило, в ней имеется кнопка для удаления. Атрибут **data-request** вызывает `onSave` AJAX обработчик, поддерживаемый поведением формы. Ниже приводится пример типичного содержания формы update.htm.
 
     <div class="control-breadcrumb">
         <ul>
-            <li><a href="<?= Backend::url('acme/blog/posts') ?>">Blog Categories</a></li>
+            <li><a href="<?= Backend::url('acme/blog/posts') ?>">Категории блога</a></li>
             <li><?= e($this->pageTitle) ?></li>
         </ul>
     </div>
@@ -292,31 +413,31 @@ The **update.htm** view represents the Update page that allows users to update o
                     data-request-data="close:true" 
                     data-hotkey="ctrl+enter"
                     data-hotkey-mac="cmd+enter"
-                    data-load-indicator="Saving Category..." 
+                    data-load-indicator="Сахранение категории..." 
                     class="btn btn-default">
-                    Save and Close
+                    Сохранить и закрыть
                 </button>
                 <button 
                     type="button" 
                     class="oc-icon-trash-o btn-icon danger pull-right" 
                     data-request="onDelete" 
-                    data-load-indicator="Deleting Category..." 
-                    data-request-confirm="Do you really want to delete this category?">
+                    data-load-indicator="Удалить категорию..." 
+                    data-request-confirm="Вы уверены что хотите удалить категорию?">
                 </button>
 
-                <span class="btn-text"> or 
-                <a href="<?= Backend::url('acme/blog/categories') ?>">Cancel</a></span>
+                <span class="btn-text"> или 
+                <a href="<?= Backend::url('acme/blog/categories') ?>">Отменить</a></span>
             </div>
         </div>
     <?= Form::close() ?>
 
-### <a name="form-preview-view" class="anchor" href="#form-preview-view"></a> Preview view
+### <a name="form-preview-view" class="anchor" href="#form-preview-view"></a> Вид Предосмотра
 
-The **preview.htm** view represents the Preview page that allows users to preview existing records in the read-only mode. A typical Preview page contains breadcrumbs and the form itself. Below is a contents of the typical preview.htm form.
+Вид **preview.htm** представляет собой общую страницу предварительного просмотра, что позволяет пользователям просматривать существующие записи в режиме только для чтения. Типично для такой страницы содержание меню навигации и самой формы. Ниже приводится пример такой формы preview.htm.
 
     <div class="control-breadcrumb">
         <ul>
-            <li><a href="<?= Backend::url('rainlab/blog/categories') ?>">Blog Categories</a></li>
+            <li><a href="<?= Backend::url('rainlab/blog/categories') ?>">Категории блога</a></li>
             <li><?= e($this->pageTitle) ?></li>
         </ul>
     </div>
@@ -324,16 +445,16 @@ The **preview.htm** view represents the Preview page that allows users to previe
     <?= $this->formRenderPreview() ?>
 
 
-### Overriding the default form behavior
+### Переопределение поведения формы по умолчанию
 
-Sometimes you may wish to use your own logic along with the form. You can use your own `create()`, `update()` or `preview()` action method in the controller, then call the Form behavior method.
+Есть также возможность использовать собственную логику вместе с формой. При этом можно использовать свои методы действий `create()`, `update()` или `preview()` в контроллере, после чего вызывать их поведением формы.
 
     public function update($recordId, $context = null)
     {
         //
-        // Do any custom code here
+        // Любой пользовательский код
         //
 
-        // Call the FormController behavior update() method
+        // Вызов метода update() поведения FormController
         return $this->getClassExtension('Backend.Behaviors.FormController')->update($recordId, $context);
     }
