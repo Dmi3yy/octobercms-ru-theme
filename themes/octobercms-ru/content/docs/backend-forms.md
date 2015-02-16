@@ -235,7 +235,7 @@
 
 Радио списки поддерживают 3 метода определения параметов, так же как и в меню выбора (dropdown). Для радио списков метод может содержать как простой массив: **key => value** так и массив с описанием параметров: **key => [Название, Описание]**
 
-`widget` - этот `тип` полей может обращаться к имени класса виджета. Больше об этом можно узнать на странице докементации [Виджеты форм](backend-widgets.md).
+`widget` - этот `тип` полей может обращаться непосредственно к имени класса виджета или зарегистрированному имени псевдонима.
 
     blog_content:
       type: Backend\FormWidgets\RichEditor
@@ -243,9 +243,9 @@
       options: [...]
 
 
-## <a name="form-widgets" class="anchor" href="#form-widgets"></a> Form widgets
+## <a name="form-widgets" class="anchor" href="#form-widgets"></a> Виджеты форм
 
-There are various form widgets included as standard, although it is common for plugins to provide their own custom form widgets. You can read more on the [Form Widgets](widgets) article.
+Есть различные виджеты плагинов, в стандартном комплекте, обеспечивающие собственными виджетами пользовательские формы. Подробней можно почитать на странице [Виджетов](backend-widgets.md) системы управления.
 
 - [# Визуальный редактор / WYSIWYG](#widget-richeditor)
 - [# Редактор кода](#widget-codeeditor)
@@ -314,40 +314,40 @@ There are various form widgets included as standard, although it is common for p
 **mode** | ожидаемое значение, такое как date, datetime или time. По умолчанию: datetime.
 
 
-### <a name="widget-relation" class="anchor" href="#widget-relation"></a> Отношение
+### <a name="widget-relation" class="anchor" href="#widget-relation"></a> Связывание
 
-`relation` - выводит выпадающий список (dropdown) или список флажков (checkbox), в зависимости от типа поля, с которым происходит связь. Особые отношения отображают выпадающий список, множественные отношения отображают список флажков для множественного выбора.
+`relation` - выводит выпадающий список (dropdown) или список флажков (checkbox), в зависимости от типа поля, с которым происходит связь. Особые связи отображают выпадающий список, множественные связи отображают список флажков для множественного выбора.
 
     categories:
-        label: Categories
+        label: Категории
         type: relation
         nameFrom: title
 
-Option  | Description
+Параметр  | Описание
 ------------- | -------------
-**nameFrom** | the column name to use in the relation used for displaying the name. Default: name.
-**descriptionFrom** | the column name to use in the relation used for displaying a description (optional). Default: description.
-**emptyOption** | text to display when there is no available selections.
+**nameFrom** | название колонки используемое для имени связывания. По умолчанию: name.
+**descriptionFrom** | название колонки используемое для описания связывания (не обязательное). По умолчанию: description.
+**emptyOption** | текст, который отображается в списке если ничего не выбрано.
 
 
-### <a name="widget-recordfinder" class="anchor" href="#widget-recordfinder"></a> Record finder
+### <a name="widget-recordfinder" class="anchor" href="#widget-recordfinder"></a> Поиск записей
 
-`recordfinder` - renders a field with details of a related record. Expanding the field displays a popup list to search large amounts of records. Supported by singular relationaships only.
+`recordfinder` - выводит поле с деталями связанной записи. Расширение этого поля отображает всплывающий, искомый в большом количестве записей список.
 
     user:
-        label: User
+        label: Пользователь
         type: recordfinder
         list: ~/plugins/rainlab/user/models/user/columns.yaml
-        prompt: Click the %s button to find a user
+        prompt: Нажмите кнопку %s для поиска пользователя
         nameFrom: name
         descriptionFrom: email
 
-Option  | Description
+Параметр  | Описание
 ------------- | -------------
-**nameFrom** | the column name to use in the relation used for displaying the name. Default: name.
-**descriptionFrom** | the column name to use in the relation used for displaying a description. Default: description.
-**prompt** | text to display when there is no record selected. The `%s` character represents the search icon.
-**list** | a configuration array or reference to a list column definition file, see [list columns](lists#list-columns).
+**nameFrom** | название колонки используемое для имени связывания. По умолчанию: name.
+**descriptionFrom** | название колонки используемое для описания связывания (не обязательное). По умолчанию: description.
+**prompt** | текст, который отображается в списке если ни одна запись не выбрана. Символ `%s` отображает значёк поиска.
+**list** | массив настроек или ссылка на определённый файл столбца списка, подробней о [списке столбцов](backend-lists.md#list-columns).
 
 
 ## <a name="form-views" class="anchor" href="#form-views"></a> Виды форм
