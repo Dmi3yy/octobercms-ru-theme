@@ -1,9 +1,9 @@
 # Backend Controls
 
-- [# Scoreboards](#scoreboards)
-- [# Indicators](#indicators)
-- [# Pie chart](#pie-chart)
-- [# Bar chart](#bar-chart)
+- [Scoreboards](#scoreboards)
+- [Indicators](#indicators)
+- [Pie chart](#pie-chart)
+- [Bar chart](#bar-chart)
 
 The back-end user interface includes a number of HTML controls that you can use on your pages.
 

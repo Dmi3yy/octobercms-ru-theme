@@ -1,7 +1,7 @@
 # Запросы в базу данных
 
-- [# Direct SQL](#direct-sql)
-- [# Active Record](#active-record)
+- [ Direct SQL](#direct-sql)
+- [ Active Record](#active-record)
 
 
 In October you have two different approaches to working with databases:

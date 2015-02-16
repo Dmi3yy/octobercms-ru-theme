@@ -237,7 +237,6 @@ code{
         h1{
             margin-bottom: 0;
             font-size: 300%;
-            font-weight: bold;
         }
         
         .description{
@@ -288,21 +287,27 @@ code{
     }
     
     .docsmenu{
+        @media(max-width: 1000px){
+            padding: 0 35px;
+        }
+        
         .list-unstyled{            
             .header{
                 color: @link-color;
                 font-size: 150%;
                 margin-bottom: 5px;
+                position: relative;
                 
                 i{
                     color: lighten(@text-color, 30%);
                     display: inline-block;
-                    width: 34px;
+                    font-size: 20px;
+                    position: absolute;
+                    left: -30px;
+                    top: 7px;
                 }
             }
             .item{
-                padding-left: 34px;
-                
                 a{
                     color: @text-color;
                     border-bottom: transparent;
@@ -328,9 +333,14 @@ code{
         margin-bottom:30px;
         position: relative;
         
+        @media(max-width: 1000px){
+            padding: 0 30px;
+        }
+        
         h1, h2, h3, h4{
             color: @brand-primary;
             letter-spacing: 0.05em;
+            position: relative;
             
             a{
                 &:hover{
@@ -342,20 +352,25 @@ code{
                 font-weight: normal;
                 border-bottom-color: transparent;
                 color: lighten(mix(@link-color, red, 40%), 30%);
-                margin-right: 5px;
-                
-                &:before{
-                    content: '#';
-                }
                 
                 &:hover{
                     color: @link-color;
+                }
+                
+                &:before{
+                    margin-right: .25em;
+                    content: "#";
+                    margin-left: -25px;
+                    position: absolute;
+                    font-size: 28px;
+                    color: #f4645f;
+                    opacity: .6;
                 }
             }
         }
         
         h1, h2{
-            font-weight: bold;
+            font-weight: 400;
             color: darken(@brand-danger, 15%);
         }
         
@@ -363,13 +378,19 @@ code{
             margin-bottom: 20px;
         }
         
-        ul{
+        h1 + ul{
             list-style: none;
             margin: 0 0 20px;
             padding: 0;
             
             li{
-                padding: 3px 0;
+                padding: 2px 0;
+                
+                &:before{
+                    color: @color-blue;
+                    content: "# ";
+                    margin-right: .25em;
+                }
             }
         }
         
@@ -386,14 +407,14 @@ code{
             border-left: 0px none;
             background: none repeat scroll 0% 0% @brand-danger;
             font-weight: 200;
-            line-height: 200%;
+            line-height: 160%;
             border-radius: 3px;
             padding: 10px 20px;
             margin: 0px 0px 30px;
             font-size: @font-size-base;
             
             p, div{
-            	line-height: 200%;
+            	line-height: 160%;
                 font-size: @font-size-base;
                 margin-bottom: 0;
             }

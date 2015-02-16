@@ -1,8 +1,8 @@
 # Чанки ( Partials )
 
-- [# Introduction](#introduction)
-- [# Rendering partials](#rendering-partials)
-- [# Passing variables to partials](#variables)
+- [ Introduction](#introduction)
+- [ Rendering partials](#rendering-partials)
+- [ Passing variables to partials](#variables)
 
 Partials contain reusable chunks of Twig markup that can be used anywhere throughout the website. Partials are extremely useful for page elements that repeat on different pages or layouts. A good partial example is a page footer which is used in different page [layouts](layouts). Also, partials are required for updating the page content with [AJAX](ajax).
 

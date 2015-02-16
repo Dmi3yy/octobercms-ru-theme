@@ -1,7 +1,7 @@
 # Backend Users & Permissions
 
-- [# Restricting access to back-end pages](#page-access)
-- [# Restricting access to features](#features)
+- [Restricting access to back-end pages](#page-access)
+- [Restricting access to features](#features)
 
 Plugins can register permissions in the [registration class](../plugin/registration#navigation-permissions) inside the `registerPermissions()` method. Plugin permissions are defined as an array with keys corresponding the permission keys and values corresponding the permission descriptions. The permission keys consist of the author name, the plugin name and the feature name. Example:
 
