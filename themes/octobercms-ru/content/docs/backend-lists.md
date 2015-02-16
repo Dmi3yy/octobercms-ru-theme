@@ -1,8 +1,8 @@
 # Backend lists
 
-- [# Configuring the list behavior](#configuring-list)
-- [# List columns](#list-columns)
-- [# Displaying the list](#displaying-list)
+- [Configuring the list behavior](#configuring-list)
+- [List columns](#list-columns)
+- [Displaying the list](#displaying-list)
 
 `List behavior` is a controller modifier used for easily adding a record list to a page. The behavior provides the sortable and searchable list with optional links on its records. 
 

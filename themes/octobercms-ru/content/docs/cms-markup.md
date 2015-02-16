@@ -1,12 +1,12 @@
 # Markup
 
-- [# Default variables](#default-variables)
-- [# Page links](#page-links)
-- [# Links to asset files](#theme-filter)
-- [# Flash messages](#flash-messages)
-- [# Forms](#forms)
-- [# Injecting CSS links](#styles-tag)
-- [# Injecting JavaScript scripts](#scripts-tag)
+- [ Default variables](#default-variables)
+- [ Page links](#page-links)
+- [ Links to asset files](#theme-filter)
+- [ Flash messages](#flash-messages)
+- [ Forms](#forms)
+- [ Injecting CSS links](#styles-tag)
+- [ Injecting JavaScript scripts](#scripts-tag)
 
 October extends [Twig](http://twig.sensiolabs.org/documentation) engine with a number of functions, tags, filters and variables. Those extensions allow you to use the CMS features and access the page environment information inside your templates.
 

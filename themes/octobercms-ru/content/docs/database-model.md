@@ -1,15 +1,15 @@
 # Active Record Model
 
-- [# Introduction](#introduction)
-- [# Relationships](#relationships)
-- [# Attribute modifiers](#attribute-modifiers)
-- [# Joined eager loading](#joined-eager-loading)
-- [# Model events](#model-events)
-- [# Model validation](#model-validation)
-- [# File attachments](#file-attachments)
-- [# Deferred binding](#deferred-binding)
-- [# Extending models](#extending-models)
-- [# Further reading](#further-reading)
+- [ Introduction](#introduction)
+- [ Relationships](#relationships)
+- [ Attribute modifiers](#attribute-modifiers)
+- [ Joined eager loading](#joined-eager-loading)
+- [ Model events](#model-events)
+- [ Model validation](#model-validation)
+- [ File attachments](#file-attachments)
+- [ Deferred binding](#deferred-binding)
+- [ Extending models](#extending-models)
+- [ Further reading](#further-reading)
 
 October provides the option of using an Active Record pattern to access the database, through the use of the `Model` class. The class extends and shares the features of [Eloquent ORM provided by Laravel](http://laravel.com/docs/eloquent).
 

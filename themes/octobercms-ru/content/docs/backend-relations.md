@@ -1,8 +1,8 @@
 # Relations
 
-- [# Configuring the relation behavior](#configuring-relation)
-- [# Displaying a relation manager](#relation-display)
-- [# Relationship types](#relationship-types)
+- [ Configuring the relation behavior](#configuring-relation)
+- [ Displaying a relation manager](#relation-display)
+- [ Relationship types](#relationship-types)
 
 `Relation behavior` is a controller modifier used for easily managing complex [model](../database/model) relationships on a page. Not to be confused with [List](lists#column-types) relation columns or Form relation fields that only provide simple management. 
 

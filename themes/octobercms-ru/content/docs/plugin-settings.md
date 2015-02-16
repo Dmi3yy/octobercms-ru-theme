@@ -1,8 +1,8 @@
 # Настройки плагина & Конфигурация
 
-- [# Database settings](#database-settings)
-- [# Back-end settings forms](#backend-forms)
-- [# File-based configuration](#file-configuration)
+- [Database settings](#database-settings)
+- [Back-end settings forms](#backend-forms)
+- [File-based configuration](#file-configuration)
 
 There are two ways to configure plugins - with the back-end settings forms and with the configuration files. The back-end settings forms provide the better user experience, but they are more complicated for the development.
 

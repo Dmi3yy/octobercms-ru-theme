@@ -1,8 +1,8 @@
 # Шаблоны ( Layouts )
 
-- [# Введение](#introduction)
-- [# Плейсхолдеры](#placeholders)
-- [# Динамические макеты](#dynamic-layouts)
+- [ Введение](#introduction)
+- [ Плейсхолдеры](#placeholders)
+- [ Динамические макеты](#dynamic-layouts)
 
 В шаблонах определяются разметка верхних (header) и нижних (footer) участков страниц. В основном, шаблоны содержат HTML, HEAD, TITLE и BODY.
 

@@ -1,13 +1,13 @@
 # AJAX фреймворк
 
-- [# Introduction](#introduction)
-- [# Ajax handlers](#ajax-handlers)
-- [# Data attributes API](#data-attributes)
-- [# JavaScript API](#javascript-api)
-- [# Calling AJAX handlers defined in components](#components-ajax-handlers)
-- [# Global AJAX events](#global-events)
-- [# Returning data from AJAX handlers](#returning-data-from-handlers)
-- [# Redirections in AJAX handlers](#redirections-in-handlers)
+- [Introduction](#introduction)
+- [Ajax handlers](#ajax-handlers)
+- [Data attributes API](#data-attributes)
+- [JavaScript API](#javascript-api)
+- [Calling AJAX handlers defined in components](#components-ajax-handlers)
+- [Global AJAX events](#global-events)
+- [Returning data from AJAX handlers](#returning-data-from-handlers)
+- [Redirections in AJAX handlers](#redirections-in-handlers)
 
 October includes the AJAX framework that lets you to execute AJAX handlers defined in your [pages](pages), [layouts](layouts) or [components](components) and update page blocks with [partials](partials). The AJAX framework comes in two flavors - as JavaScript API and data attributes API. The data attributes API doesn't require any JavaScript knowledge to use AJAX with October.
 
